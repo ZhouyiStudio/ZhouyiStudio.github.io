@@ -1,0 +1,260 @@
+:root {
+  --background-color: #fff;
+  --background-color-transparent: rgba(255,255,255,0.6);
+  --background-color-transparent-15: rgba(255,255,255,0.15);
+  --background-color-transparent-40: rgba(255,255,255,0.4);
+  --background-color-transparent-80: rgba(255,255,255,0.8);
+  --second-background-color: #fafafa;
+  --third-background-color: #f7f7f7;
+  --third-background-color-transparent: rgba(241,241,241,0.6);
+  --primary-color: #a31f34;
+  --first-text-color: #323739;
+  --second-text-color: #343a3c;
+  --third-text-color: #5c6669;
+  --fourth-text-color: #eaeced;
+  --default-text-color: #373d3f;
+  --invert-text-color: #bebec6;
+  --border-color: rgba(0,0,0,0.08);
+  --selection-color: #be243c;
+  --shadow-color-1: rgba(0,0,0,0.08);
+  --shadow-color-2: rgba(0,0,0,0.05);
+  --shadow-hover-color: rgba(0,0,0,0.28);
+  --scrollbar-color: #c1c1c1;
+  --scrollbar-color-hover: #a1a1a1;
+  --scroll-bar-bg-color: #fafafa;
+  --link-color: #323739;
+  --copyright-info-color: #c03;
+  --avatar-background-color: #06c;
+  --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
+  --archive-timeline-last-child-color: linear-gradient(to bottom, #e8e8e8 60%, rgba(0,0,0,0) 100%) 1 100%;
+  --note-blue-title-bg: #d6f7fb;
+  --note-red-title-bg: #fde9e9;
+  --note-cyan-title-bg: #e9fdf9;
+  --note-green-title-bg: #e9fde9;
+  --note-yellow-title-bg: #fdf9e9;
+  --note-gray-title-bg: #f9f9f9;
+  --note-type-title-bg: #fdf3e9;
+  --note-black-title-bg: #e9e9e9;
+  --note-purple-title-bg: #f9e9fd;
+  --home-banner-text-color: #fff;
+  --home-banner-icons-container-border-color: rgba(255,255,255,0.35);
+  --home-banner-icons-container-background-color: rgba(255,255,255,0.3);
+  --redefine-box-shadow: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+  --redefine-box-shadow-hover: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+  --redefine-box-shadow-flat: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+  --redefine-box-shadow-flat-hover: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+  --mermaid-theme: '';
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #fff;
+    --background-color-transparent: rgba(255,255,255,0.6);
+    --background-color-transparent-15: rgba(255,255,255,0.15);
+    --background-color-transparent-40: rgba(255,255,255,0.4);
+    --background-color-transparent-80: rgba(255,255,255,0.8);
+    --second-background-color: #fafafa;
+    --third-background-color: #f7f7f7;
+    --third-background-color-transparent: rgba(241,241,241,0.6);
+    --primary-color: #a31f34;
+    --first-text-color: #323739;
+    --second-text-color: #343a3c;
+    --third-text-color: #5c6669;
+    --fourth-text-color: #eaeced;
+    --default-text-color: #373d3f;
+    --invert-text-color: #bebec6;
+    --border-color: rgba(0,0,0,0.08);
+    --selection-color: #be243c;
+    --shadow-color-1: rgba(0,0,0,0.08);
+    --shadow-color-2: rgba(0,0,0,0.05);
+    --shadow-hover-color: rgba(0,0,0,0.28);
+    --scrollbar-color: #c1c1c1;
+    --scrollbar-color-hover: #a1a1a1;
+    --scroll-bar-bg-color: #fafafa;
+    --link-color: #323739;
+    --copyright-info-color: #c03;
+    --avatar-background-color: #06c;
+    --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
+    --archive-timeline-last-child-color: linear-gradient(to bottom, #e8e8e8 60%, rgba(0,0,0,0) 100%) 1 100%;
+    --note-blue-title-bg: #d6f7fb;
+    --note-red-title-bg: #fde9e9;
+    --note-cyan-title-bg: #e9fdf9;
+    --note-green-title-bg: #e9fde9;
+    --note-yellow-title-bg: #fdf9e9;
+    --note-gray-title-bg: #f9f9f9;
+    --note-type-title-bg: #fdf3e9;
+    --note-black-title-bg: #e9e9e9;
+    --note-purple-title-bg: #f9e9fd;
+    --home-banner-text-color: #fff;
+    --home-banner-icons-container-border-color: rgba(255,255,255,0.35);
+    --home-banner-icons-container-background-color: rgba(255,255,255,0.3);
+    --redefine-box-shadow: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+    --redefine-box-shadow-hover: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+    --redefine-box-shadow-flat: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+    --redefine-box-shadow-flat-hover: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+    --mermaid-theme: '';
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #202124;
+    --background-color-transparent: rgba(32,33,36,0.4);
+    --background-color-transparent-15: rgba(32,33,36,0.15);
+    --background-color-transparent-40: rgba(32,33,36,0.4);
+    --background-color-transparent-80: rgba(32,33,36,0.8);
+    --second-background-color: #242529;
+    --third-background-color: #292b2f;
+    --third-background-color-transparent: rgba(32,33,36,0.6);
+    --primary-color: #a31f34;
+    --first-text-color: #d2d2d7;
+    --second-text-color: #cbcbd1;
+    --third-text-color: #9595a2;
+    --fourth-text-color: #242429;
+    --default-text-color: #bebec6;
+    --invert-text-color: #373d3f;
+    --border-color: rgba(255,255,255,0.08);
+    --selection-color: #be243c;
+    --shadow-color-1: rgba(255,255,255,0.08);
+    --shadow-color-2: rgba(255,255,255,0.05);
+    --shadow-hover-color: rgba(69,69,69,0.28);
+    --scrollbar-color: #898989;
+    --scrollbar-color-hover: #a1a1a1;
+    --scroll-bar-bg-color: #2a2c30;
+    --link-color: #c5c5cc;
+    --copyright-info-color: #a30029;
+    --avatar-background-color: #005cb8;
+    --pjax-progress-bar-color: linear-gradient(45deg, #ea404a, #ea722f, #e9a71f, #67e559, #18ecec, #1b85f1, #ee1dee);
+    --archive-timeline-last-child-color: linear-gradient(to bottom, #323232 60%, rgba(255,255,255,0) 100%) 1 100%;
+    --note-blue-title-bg: #1e3e46;
+    --note-red-title-bg: #4e1e1e;
+    --note-cyan-title-bg: #1e4e4e;
+    --note-green-title-bg: #1e4e1e;
+    --note-yellow-title-bg: #4e4e1e;
+    --note-gray-title-bg: #4e4e4e;
+    --note-type-title-bg: #4e3a1e;
+    --note-black-title-bg: #1e1e1e;
+    --note-purple-title-bg: #4e1e4e;
+    --home-banner-text-color: #d1d1b6;
+    --home-banner-icons-container-border-color: rgba(197,197,197,0.35);
+    --home-banner-icons-container-background-color: rgba(197,197,197,0.3);
+    --redefine-box-shadow: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+    --redefine-box-shadow-hover: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+    --redefine-box-shadow-flat: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+    --redefine-box-shadow-flat-hover: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+    --mermaid-theme: '';
+  }
+}
+.light-mode {
+  --background-color: #fff;
+  --background-color-transparent: rgba(255,255,255,0.6);
+  --background-color-transparent-15: rgba(255,255,255,0.15);
+  --background-color-transparent-40: rgba(255,255,255,0.4);
+  --background-color-transparent-80: rgba(255,255,255,0.8);
+  --second-background-color: #fafafa;
+  --third-background-color: #f7f7f7;
+  --third-background-color-transparent: rgba(241,241,241,0.6);
+  --primary-color: #a31f34;
+  --first-text-color: #323739;
+  --second-text-color: #343a3c;
+  --third-text-color: #5c6669;
+  --fourth-text-color: #eaeced;
+  --default-text-color: #373d3f;
+  --invert-text-color: #bebec6;
+  --border-color: rgba(0,0,0,0.08);
+  --selection-color: #be243c;
+  --shadow-color-1: rgba(0,0,0,0.08);
+  --shadow-color-2: rgba(0,0,0,0.05);
+  --shadow-hover-color: rgba(0,0,0,0.28);
+  --scrollbar-color: #c1c1c1;
+  --scrollbar-color-hover: #a1a1a1;
+  --scroll-bar-bg-color: #fafafa;
+  --link-color: #323739;
+  --copyright-info-color: #c03;
+  --avatar-background-color: #06c;
+  --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
+  --archive-timeline-last-child-color: linear-gradient(to bottom, #e8e8e8 60%, rgba(0,0,0,0) 100%) 1 100%;
+  --note-blue-title-bg: #d6f7fb;
+  --note-red-title-bg: #fde9e9;
+  --note-cyan-title-bg: #e9fdf9;
+  --note-green-title-bg: #e9fde9;
+  --note-yellow-title-bg: #fdf9e9;
+  --note-gray-title-bg: #f9f9f9;
+  --note-type-title-bg: #fdf3e9;
+  --note-black-title-bg: #e9e9e9;
+  --note-purple-title-bg: #f9e9fd;
+  --home-banner-text-color: #fff;
+  --home-banner-icons-container-border-color: rgba(255,255,255,0.35);
+  --home-banner-icons-container-background-color: rgba(255,255,255,0.3);
+  --redefine-box-shadow: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+  --redefine-box-shadow-hover: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+  --redefine-box-shadow-flat: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+  --redefine-box-shadow-flat-hover: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+  --mermaid-theme: '';
+}
+.dark-mode {
+  --background-color: #202124;
+  --background-color-transparent: rgba(32,33,36,0.4);
+  --background-color-transparent-15: rgba(32,33,36,0.15);
+  --background-color-transparent-40: rgba(32,33,36,0.4);
+  --background-color-transparent-80: rgba(32,33,36,0.8);
+  --second-background-color: #242529;
+  --third-background-color: #292b2f;
+  --third-background-color-transparent: rgba(32,33,36,0.6);
+  --primary-color: #a31f34;
+  --first-text-color: #d2d2d7;
+  --second-text-color: #cbcbd1;
+  --third-text-color: #9595a2;
+  --fourth-text-color: #242429;
+  --default-text-color: #bebec6;
+  --invert-text-color: #373d3f;
+  --border-color: rgba(255,255,255,0.08);
+  --selection-color: #be243c;
+  --shadow-color-1: rgba(255,255,255,0.08);
+  --shadow-color-2: rgba(255,255,255,0.05);
+  --shadow-hover-color: rgba(69,69,69,0.28);
+  --scrollbar-color: #898989;
+  --scrollbar-color-hover: #a1a1a1;
+  --scroll-bar-bg-color: #2a2c30;
+  --link-color: #c5c5cc;
+  --copyright-info-color: #a30029;
+  --avatar-background-color: #005cb8;
+  --pjax-progress-bar-color: linear-gradient(45deg, #ea404a, #ea722f, #e9a71f, #67e559, #18ecec, #1b85f1, #ee1dee);
+  --archive-timeline-last-child-color: linear-gradient(to bottom, #323232 60%, rgba(255,255,255,0) 100%) 1 100%;
+  --note-blue-title-bg: #1e3e46;
+  --note-red-title-bg: #4e1e1e;
+  --note-cyan-title-bg: #1e4e4e;
+  --note-green-title-bg: #1e4e1e;
+  --note-yellow-title-bg: #4e4e1e;
+  --note-gray-title-bg: #4e4e4e;
+  --note-type-title-bg: #4e3a1e;
+  --note-black-title-bg: #1e1e1e;
+  --note-purple-title-bg: #4e1e4e;
+  --home-banner-text-color: #d1d1b6;
+  --home-banner-icons-container-border-color: rgba(197,197,197,0.35);
+  --home-banner-icons-container-background-color: rgba(197,197,197,0.3);
+  --redefine-box-shadow: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+  --redefine-box-shadow-hover: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+  --redefine-box-shadow-flat: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
+  --redefine-box-shadow-flat-hover: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
+  --mermaid-theme: '';
+}
+.tag-container .tag-name {
+  color: var(--second-text-color);
+  font-size: 3rem;
+  font-weight: 600;
+  padding-bottom: 20px;
+  margin-bottom: 38px;
+  border-bottom: 1px solid var(--shadow-color-1);
+}
+.tag-container .tag-name i {
+  color: var(--second-text-color);
+}
+@media (max-width: 768px) {
+  .tag-container .tag-name {
+    font-size: 2.7rem;
+  }
+}
+@media (max-width: 640px) {
+  .tag-container .tag-name {
+    font-size: 2.4rem;
+  }
+}
