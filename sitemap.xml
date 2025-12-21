@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhouyistudio.github.io/music/</loc>
+    
+    <lastmod>2025-12-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouyistudio.github.io/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E7%9A%84%E3%80%81%E5%A4%A7%E9%87%8F%E7%9A%84%E6%B8%85%E7%90%86Linux%E7%B3%BB%E7%BB%9F%E5%BA%9F%E7%89%A9%E6%96%87%E4%BB%B6/</loc>
+    
+    <lastmod>2025-12-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouyistudio.github.io/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E7%9A%84%E3%80%81%E5%A4%A7%E9%87%8F%E7%9A%84%E6%B8%85%E7%90%86Linux%E7%B3%BB%E7%BB%9F%E5%BA%9F%E7%89%A9%E6%96%87%E4%BB%B6</loc>
+    
+    <lastmod>2025-12-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zhouyistudio.github.io/%E6%96%B0%E6%89%8B%E9%9B%B6%E9%97%A8%E6%A7%9B%EF%BC%81%E9%9B%A8%E4%BA%91MC%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E6%9C%8D%E5%85%A8%E6%94%BB%E7%95%A5%EF%BC%8C10%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A%E4%B8%93%E5%B1%9E%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     
     <lastmod>2025-12-20</lastmod>
@@ -40,12 +67,40 @@
 
   <url>
     <loc>https://zhouyistudio.github.io/</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
+  <url>
+    <loc>https://zhouyistudio.github.io/tags/Web/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouyistudio.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouyistudio.github.io/tags/%E6%97%A5%E5%B8%B8/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>https://zhouyistudio.github.io/categories/%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
