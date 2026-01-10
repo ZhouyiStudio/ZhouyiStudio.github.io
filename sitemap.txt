@@ -9,9 +9,9 @@ https://zhouyistudio.github.io/tags/
 https://zhouyistudio.github.io/hello-world/
 https://zhouyistudio.github.io/
 https://zhouyistudio.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/
-https://zhouyistudio.github.io/tags/Minecraft/
-https://zhouyistudio.github.io/tags/%E6%97%A5%E5%B8%B8/
 https://zhouyistudio.github.io/tags/Web/
+https://zhouyistudio.github.io/tags/%E6%97%A5%E5%B8%B8/
 https://zhouyistudio.github.io/tags/Git/
 https://zhouyistudio.github.io/tags/%E6%B0%B4%E5%B8%96/
+https://zhouyistudio.github.io/tags/Minecraft/
 https://zhouyistudio.github.io/categories/%E5%BC%80%E5%8F%91/

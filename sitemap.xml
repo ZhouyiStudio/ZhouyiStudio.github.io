@@ -99,7 +99,7 @@
   </url>
   
   <url>
-    <loc>https://zhouyistudio.github.io/tags/Minecraft/</loc>
+    <loc>https://zhouyistudio.github.io/tags/Web/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -107,13 +107,6 @@
   
   <url>
     <loc>https://zhouyistudio.github.io/tags/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhouyistudio.github.io/tags/Web/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -128,6 +121,13 @@
   
   <url>
     <loc>https://zhouyistudio.github.io/tags/%E6%B0%B4%E5%B8%96/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouyistudio.github.io/tags/Minecraft/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
