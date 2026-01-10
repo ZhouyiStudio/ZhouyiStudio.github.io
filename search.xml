@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>2b2tCN-Minecraft服务器管理地址</title>
+      <link href="/2b2tCN-Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E5%9C%B0%E5%9D%80/"/>
+      <url>/2b2tCN-Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E5%9C%B0%E5%9D%80/</url>
+      
+        <content type="html"><![CDATA[<p>&#96;&#96;</p><p><img src="https://lc-gluttony.s3.amazonaws.com/b2AcHhH7Oev2/B8LsqOUYyoBYMkOgjA4AMrr8wzN7cDzi/2b2tCN%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2.png" alt="2b2tCN服务器管理页面" title="2b2tCN服务器管理页面"></p><blockquote><p><strong>面板地址：<a href="http://mcsm.rainyun.com/#/login">http://mcsm.rainyun.com</a></strong></p><p><strong>账号：2b2tCNAdmin</strong></p><p><strong>密码：不公开！请点击按钮查看</strong></p></blockquote><div style="margin: 20px 0; padding: 15px; background-color: #f0f8fb; border-radius: 8px; border: 1px solid #e8f4f8;">  <div style="color: #e53e3e; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center;">    ⚠️ 核心运维警告  </div>  <p style="color: #4a5568; margin: 8px 0; line-height: 1.6;">    此按钮仅对服务器管理员开放！禁止普通玩家点击、分享或滥用<br>    泄露账号密码将导致服务器被恶意篡改，操作后请立即退出登录  </p>  <!-- 带密码验证的按钮 -->  <button id="mcsmBtn" style="padding: 10px 24px; background-color: #4299e1; color: white; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">    🛠️ 进入 MCSM 服务器管理面板  </button>  <script>    // 绑定按钮点击事件，增加密码验证    document.getElementById('mcsmBtn').addEventListener('click', function() {      // 第一步：弹出警告确认框      const confirmWarning = confirm(        '⚠️ 高危操作警告！\n\n' +        '1. 此链接包含服务器登录凭证，仅限管理员使用\n' +        '2. 非管理员禁止访问，违规操作将追责\n' +        '3. 请确认你知晓操作风险并承担后果'      );      if (!confirmWarning) return; // 取消则不跳转      // 第二步：密码验证（不区分大小写）      const correctPwd = '2b2tCN20250604';      const userPwd = prompt(`🔒 管理员密码验证：\n请输入访问密码（不区分大小写）`, '');      // 验证密码      if (userPwd === null) {        alert('❌ 你取消了密码输入，禁止访问。');        return;      }      // 统一转为小写后对比，实现不区分大小写验证      if (userPwd.toLowerCase() !== correctPwd.toLowerCase()) {        alert('❌ 密码错误！你可能不是管理员，禁止访问。');        return;      }      // 验证通过，跳转新的 MCSM 链接      alert('✅ 密码验证通过，即将跳转到管理面板...');      window.open('https://mcsm.rainyun.com/#/login?usr=2b2tCNAdmin&pwd=2b2tCN2025Ry6!&rdt=%2F%23%2Finstances%2Fterminal%3FdaemonId%3D33482165616f4abe83f70b923219acd2%26instanceId%3D3e427437f3274d8498046ba281b20b67', '_blank');    });  </script></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> Minecraft </tag>
+            
+            <tag> 日常 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>git push 失败？教你用 SSH 链接轻松解决</title>
       <link href="/Git-Push%E5%A4%B1%E8%B4%A5%EF%BC%9F%E6%95%99%E4%BD%A0%E7%94%A8SSH%E9%93%BE%E6%8E%A5%E8%BD%BB%E6%9D%BE%E8%A7%A3%E5%86%B3/"/>
       <url>/Git-Push%E5%A4%B1%E8%B4%A5%EF%BC%9F%E6%95%99%E4%BD%A0%E7%94%A8SSH%E9%93%BE%E6%8E%A5%E8%BD%BB%E6%9D%BE%E8%A7%A3%E5%86%B3/</url>
@@ -22,9 +51,9 @@
             
             <tag> 服务器 </tag>
             
-            <tag> Git </tag>
-            
             <tag> 日常 </tag>
+            
+            <tag> Git </tag>
             
             <tag> 水帖 </tag>
             

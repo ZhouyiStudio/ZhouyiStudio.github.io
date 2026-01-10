@@ -1,3 +1,4 @@
+https://zhouyistudio.github.io/2b2tCN-Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E5%9C%B0%E5%9D%80/
 https://zhouyistudio.github.io/Git-Push%E5%A4%B1%E8%B4%A5%EF%BC%9F%E6%95%99%E4%BD%A0%E7%94%A8SSH%E9%93%BE%E6%8E%A5%E8%BD%BB%E6%9D%BE%E8%A7%A3%E5%86%B3/
 https://zhouyistudio.github.io/json/music.json
 https://zhouyistudio.github.io/music/
@@ -8,8 +9,9 @@ https://zhouyistudio.github.io/tags/
 https://zhouyistudio.github.io/hello-world/
 https://zhouyistudio.github.io/
 https://zhouyistudio.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/
-https://zhouyistudio.github.io/tags/Git/
+https://zhouyistudio.github.io/tags/Minecraft/
 https://zhouyistudio.github.io/tags/%E6%97%A5%E5%B8%B8/
+https://zhouyistudio.github.io/tags/Git/
 https://zhouyistudio.github.io/tags/%E6%B0%B4%E5%B8%96/
 https://zhouyistudio.github.io/tags/Web/
 https://zhouyistudio.github.io/categories/%E5%BC%80%E5%8F%91/
