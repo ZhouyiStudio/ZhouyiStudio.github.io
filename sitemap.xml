@@ -128,6 +128,20 @@
 
   
   <url>
+    <loc>https://zhouyistudio.github.io/tags/git/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouyistudio.github.io/tags/%E8%B8%A9%E5%9D%91/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://zhouyistudio.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -157,20 +171,6 @@
   
   <url>
     <loc>https://zhouyistudio.github.io/tags/%E6%B0%B4%E5%B8%96/</loc>
-    <lastmod>2026-02-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhouyistudio.github.io/tags/git/</loc>
-    <lastmod>2026-02-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhouyistudio.github.io/tags/%E8%B8%A9%E5%9D%91/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
