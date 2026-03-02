@@ -128,20 +128,6 @@
 
   
   <url>
-    <loc>https://zhouyi.cn.mt/tags/git/</loc>
-    <lastmod>2026-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhouyi.cn.mt/tags/%E8%B8%A9%E5%9D%91/</loc>
-    <lastmod>2026-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://zhouyi.cn.mt/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -157,6 +143,20 @@
   
   <url>
     <loc>https://zhouyi.cn.mt/tags/%E6%97%A5%E5%B8%B8/</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouyi.cn.mt/tags/git/</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouyi.cn.mt/tags/%E8%B8%A9%E5%9D%91/</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
