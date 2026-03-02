@@ -44,19 +44,6 @@
     
     
     <entry>
-      <title>2b2tCN生存服1.21.11版本大更新公告</title>
-      <link href="/2b2tCN%E7%94%9F%E5%AD%98%E6%9C%8D1-21-11%E7%89%88%E6%9C%AC%E5%A4%A7%E6%9B%B4%E6%96%B0%E5%85%AC%E5%91%8A/"/>
-      <url>/2b2tCN%E7%94%9F%E5%AD%98%E6%9C%8D1-21-11%E7%89%88%E6%9C%AC%E5%A4%A7%E6%9B%B4%E6%96%B0%E5%85%AC%E5%91%8A/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>2b2tCN-Minecraft服务器管理地址</title>
       <link href="/2b2tCN-Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E5%9C%B0%E5%9D%80/"/>
       <url>/2b2tCN-Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E5%9C%B0%E5%9D%80/</url>
@@ -75,9 +62,9 @@
             
             <tag> 服务器 </tag>
             
-            <tag> 日常 </tag>
-            
             <tag> Minecraft </tag>
+            
+            <tag> 日常 </tag>
             
         </tags>
       
@@ -104,9 +91,9 @@
             
             <tag> 服务器 </tag>
             
-            <tag> Git </tag>
-            
             <tag> 日常 </tag>
+            
+            <tag> Git </tag>
             
             <tag> 水帖 </tag>
             

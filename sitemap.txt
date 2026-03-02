@@ -1,7 +1,6 @@
 https://zhouyi.cn.mt/Git%EF%BC%88Windows%E7%89%88%EF%BC%89%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/
 https://zhouyi.cn.mt/link/index.html
 https://zhouyi.cn.mt/Git%E7%94%9F%E6%88%90SSHKey%E6%95%99%E7%A8%8B%EF%BC%88Windows%E7%89%88%EF%BC%89/
-https://zhouyi.cn.mt/2b2tCN%E7%94%9F%E5%AD%98%E6%9C%8D1-21-11%E7%89%88%E6%9C%AC%E5%A4%A7%E6%9B%B4%E6%96%B0%E5%85%AC%E5%91%8A/
 https://zhouyi.cn.mt/2b2tCN-Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E5%9C%B0%E5%9D%80/
 https://zhouyi.cn.mt/Git-Push%E5%A4%B1%E8%B4%A5%EF%BC%9F%E6%95%99%E4%BD%A0%E7%94%A8SSH%E9%93%BE%E6%8E%A5%E8%BD%BB%E6%9D%BE%E8%A7%A3%E5%86%B3/
 https://zhouyi.cn.mt/json/music.json
@@ -13,10 +12,10 @@ https://zhouyi.cn.mt/tags/index.html
 https://zhouyi.cn.mt/hello-world/
 https://zhouyi.cn.mt/
 https://zhouyi.cn.mt/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/
-https://zhouyi.cn.mt/tags/Git/
-https://zhouyi.cn.mt/tags/%E6%97%A5%E5%B8%B8/
-https://zhouyi.cn.mt/tags/%E6%B0%B4%E5%B8%96/
 https://zhouyi.cn.mt/tags/Minecraft/
+https://zhouyi.cn.mt/tags/%E6%97%A5%E5%B8%B8/
+https://zhouyi.cn.mt/tags/Git/
+https://zhouyi.cn.mt/tags/%E6%B0%B4%E5%B8%96/
 https://zhouyi.cn.mt/tags/git/
 https://zhouyi.cn.mt/tags/%E8%B8%A9%E5%9D%91/
 https://zhouyi.cn.mt/tags/Web/
