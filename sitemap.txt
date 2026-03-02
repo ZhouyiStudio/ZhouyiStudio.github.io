@@ -12,10 +12,10 @@ https://zhouyi.cn.mt/tags/index.html
 https://zhouyi.cn.mt/hello-world/
 https://zhouyi.cn.mt/
 https://zhouyi.cn.mt/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/
-https://zhouyi.cn.mt/tags/Minecraft/
-https://zhouyi.cn.mt/tags/%E6%97%A5%E5%B8%B8/
 https://zhouyi.cn.mt/tags/Git/
+https://zhouyi.cn.mt/tags/%E6%97%A5%E5%B8%B8/
 https://zhouyi.cn.mt/tags/%E6%B0%B4%E5%B8%96/
 https://zhouyi.cn.mt/tags/%E8%B8%A9%E5%9D%91/
+https://zhouyi.cn.mt/tags/Minecraft/
 https://zhouyi.cn.mt/tags/Web/
 https://zhouyi.cn.mt/categories/%E5%BC%80%E5%8F%91/
