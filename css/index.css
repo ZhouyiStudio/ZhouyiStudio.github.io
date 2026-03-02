@@ -2927,6 +2927,9 @@ table {
   border-collapse: collapse;
   empty-cells: show;
 }
+table tr:nth-child(even) {
+  background-color: var(--anzhiyu-secondbg);
+}
 table thead {
   background: var(--anzhiyu-secondbg);
 }
