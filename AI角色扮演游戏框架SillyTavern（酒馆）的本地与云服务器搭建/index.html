@@ -1,0 +1,919 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建 | Zhouyi's Blog</title><meta name="keywords" content="前端开发,Zhouyi,JavaScript"><meta name="author" content="Zhouyi"><meta name="copyright" content="Zhouyi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建"><meta name="application-name" content="AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建"><meta property="og:url" content="https://zhouyi.cn.mt/AI%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6SillyTavern%EF%BC%88%E9%85%92%E9%A6%86%EF%BC%89%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%B8%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/index.html"><meta property="og:site_name" content="Zhouyi's Blog"><meta property="og:description" content="简介：本文介绍SillyTavern（酒馆）角色扮演游戏的玩法。并考虑到AI模型服务商API的不稳定性，以及功能限制，本文演示基于本地系统与基于云服务器的AI模型搭建，为SillyTavern的使用提供API接口。文中将介绍SillyTavern的搭建即其原理；介绍AI模型框架，AI模型，并分析优"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=b7205b0b-c1a7-89b0-ca70-7ced95312583"><meta property="article:author" content="Zhouyi"><meta property="article:tag" content="[&quot;前端开发&quot;,&quot;Zhouyi&quot;,&quot;JavaScript&quot;]"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=b7205b0b-c1a7-89b0-ca70-7ced95312583"><meta name="description" content="简介：本文介绍SillyTavern（酒馆）角色扮演游戏的玩法。并考虑到AI模型服务商API的不稳定性，以及功能限制，本文演示基于本地系统与基于云服务器的AI模型搭建，为SillyTavern的使用提供API接口。文中将介绍SillyTavern的搭建即其原理；介绍AI模型框架，AI模型，并分析优"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://zhouyi.cn.mt/AI%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6SillyTavern%EF%BC%88%E9%85%92%E9%A6%86%EF%BC%89%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%B8%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;bb76e5f03a8d4a32a97162121eff76ab&quot;}"></script><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2024/07/27/125766904/ba62475f396df9de3316a08ed9e65d86_5680958632268053399.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: {"mode":"api","api":"https://img2color.zhouyiblog.cc.cd/api?img=","cover_change":true},
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Zhouyi","link":"链接: ","source":"来源: Zhouyi's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'Zhouyi\'s Blog',
+  title: 'AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建',
+  postAI: '',
+  pageFillDescription: '可以写进.bashrc里省的每次执行都要重新输入。写最后面就行了。, 其实这个跑不了因为ollama不支持分片gguf拉取。后面我们会讲一下怎么把这些片片合并。简介本文介绍酒馆角色扮演游戏的玩法并考虑到模型服务商的不稳定性以及功能限制本文演示基于本地系统与基于云服务器的模型搭建为的使用提供接口文中将介绍的搭建即其原理介绍模型框架模型并分析优劣与问题同时推荐相应模型介绍云服务器的选择并根据需求分析各云服务商和云服务器以便读者选择分别在和环境下搭建模型介绍如何穿透没有购买公网的云服务器并通过转发配置框架建议使用雨云新一代云服务提供商一的搭建与原理的介绍为许多等提供了一个单一的统一界面适合移动设备的布局视觉小说模式和图像生成集成传说书可定制的用户界面自动翻译比你想要或需要的更多的提示选项以及通过第三方扩展带来的无尽增长潜力或简称是一个本地安装的用户界面允许您与文本生成图像生成引擎和语音模型进行交互来自官方的解释不过能点开看到这里想必对这类软件已经有了了解所以就不多解释了我们直接进入正题的下载与安装这是的文档网站这是的下载网站网上的安装教程很多都是写的所以我们直接跟着的安装流程走就好了如果对不熟悉的读者可以阅读这篇文章云也可以参考他轻松搭酒馆从入门到精通梦雨玲音不过我想能用的用户大都知道怎么食用吧的玩法介绍及其原理考虑到能阅读的读者大部分都是计算机相关的人士咱们都是理工科的没必要整那些虚的所以就直接上这游戏的原理等看一遍这游戏的原理以及角色卡世界书的编写一眼就能看明白这游戏怎么玩马上就能入手了考虑到网上已经有这类视频很好的讲解没必要听我在这里叭叭所以我们直接放视频链接酒馆创建角色卡基础哔哩哔哩酒馆创建角色卡基础世界书和状态栏哔哩哔哩酒馆创建角色卡平然常识修改哔哩哔哩这个是安卓手机上的操作酒馆使用简单教程哔哩哔哩考虑到新人可能一时间找不到资源下面我们再补充一些卡包这些是我从群里找到的链接是群里提供的你们看情况下载就好的原理及相关社区上搜一下群或者贴吧不过目前由于某些原因现在类脑和拟人现在关闭了新人入群的渠道等后面应该会开放写文时是考虑到一些问题链接都删了如果不知道的话就自己搜一下相关信息这里不好讲太细在云服务器上搭建考虑到本地每次都要点开很麻烦还好那些服务器云商有新客优惠比我我这台一年还是忘了似乎是在华为云反正这些云商现在已经被我薅了个遍你们挨个看看哪个便宜就行另外不要买大陆的服不然下载的时候会遇到各种麻烦推荐港区如果实在不想掏这钱的话就走内网穿透吧家里找个不要的电脑把跑起来然后用软件内网穿透注意要开防火墙下面我们会讲我用的是你们最好买以上垃圾的是等会安装会比较麻烦总之你们直接从官网如果不慎租了大陆的服那就像我一样直接给他压缩包下载下来下载下来之后不管你们是用也好还是其他什么也好总之上传上去输入文件名直接解压然后可以看到这些直接运行它会自动安装和之类的环境大陆的服的话就多试几次可能就了你用安装如果版本低的话比如我这儿是版那就不行看要求至少要版的我试过从官网上把考下来大陆服就下不下来我是从本地下载的二进制文件然后本地上传上去的查一下然后挨个放进里但是不认所以只能让它慢慢下了总之你运行通过后会给出这个页面然后你终止之后改配置文件改成我这样的就行我用户名和密码是默认的懒得改了你要改的话要加双引号例如改完之后运行输入账号密码上去看看管不管使默认用户名和密码就是管使了我们终止之后给它调到后台运行然后就可以了另外有个怪事我试图给这进程先暂停调到后台然后先让它在后台运行起来然后再让它从终端里面滚蛋挂靠到系统上用可以看到它不在里了不关终端还能跑但是一关终端服务就宕机了没搞清楚是怎么一回事等日后有时间了研究一下不过这套玩意太拉胯了你们要用的话建议还是用吧二模型框架和模型的选择与本地搭建与云服务器的选择模型常识与推荐原本我想仔细写写但是想了想还是算了直接放个看过的文章这比我再嚼一遍喂给读者会保留更多原有信息极简全面网盘快速部署角色扮演大模型哔哩哔哩角色扮演大模型的选用建议哔哩哔哩具体我也不好写太细后面你跟着这些模型慢慢找相关信息就了这是我的这几天搜索的比较有趣的模型很多我也没试过想玩玩的可以试一下本地大模型推荐和注意推荐版本版本则是想象力丰富但智商降低这个系列模型基于阿里巴巴的中文很不错是比较万金油的模型非常适合中文不错更拟人的模型适合扮演具体的性格鲜明的角色进行对话但不适合系统类世界类等较多逻辑需求交给的场景也不是很擅长写旁白剧情据说中文任务量和英文一样多据说角色扮演优化网上说可当使我不太信国产小模型日后可以试试国产小模型最近找到了专门讨论模型的社区社区中有大佬对市面上的模型进行测评比我一小白详细的多了下面我就直接放大佬的测评链接已删除再后面教程中我推荐的模型不必理会那都是几天前的我几天前的我还是个菜两种模型框架与的比较下载模型方便一点直接换镜像网址就了对的支持非常好没有图形界面也能用例如你从云服务器哪儿租了个显卡而对方只提供给你个终端至少你不用倒腾装图形界面之类的东西的话你要替换文件比较麻烦或者你到上下载下来模型然后本地导入进去对的服务器非常不友好因为这玩意的运行必须要有图形界面大多数云服务商不提供你要手动安装图形界面然后用连过去后面这两种我都会介绍到你们看需求选用就好的介绍与镜像官网是简单来将你可以把他当一个模型共享网站就行想要什么模型有人共享出来你就能下载下来跑当然官网在国外考虑到下载速度一般我们用国内的镜像站简单来说如果有人分享模型你直接在上面搜名字就好点进去就能看到模型简介这儿可以找到他发布的相关模型这儿可以找到量化对应的模型相信看了前面链接里的教程你应该知道量化是啥如果提供的话点击之后例如点击进去之后可以直接把模型下载到本地看到那个没是指格式你也可以中这里下载如果直接下载的话我推荐用至少下载的快一点搭建与运行模型访问的官网直接下载安装就行的安装和下载非常傻瓜化上就是下载之后下一部下一步就是执行他提供的那条命令就行如果实在看不懂的话可以看他的文档极简全面网盘快速部署角色扮演大模型哔哩哔哩安装完之后打开直接输入如果出现提示就说明安装成功了如果提示没有运行你就输入运行就行了用下载模型的话你首先知道要下载的模型叫什么推荐了一些常见的模型不过那些模型不适合我们玩所以你拿到别人推荐的模型名后到的官网上查他的名字例如别人推荐了个叫的模型你查到之后点进去可以看看他的介绍如果想看的话然后直接复制这些再看下面的量化参数选一个你想要的参数例如我打算下个最小的然后就在里写注意前面要用冒号当然如果不带参数的话就会下载推荐的默认模型有时候模型没有给你提供量化的选择你就直接写网站下载默认的就行如果成功的话你可以看到他正在下载下载完成后输入可以查看下载到本地的模型我就不下了占空间可以看到我这儿下载了两个模型一个一个就是之前说的那个你想运行的话就输入模型名就好退出的话就输入就行当然这只是退出对话你想终止模型运行的话就输入如果不知道运行有哪些模型的话就查看删除模型的话就之前卡了一下删除命令没有截到不过看看就好如果你忘了这些命令的话直接输入执行就能查看有什么命令上面几个就是最常用的至于模型下载路径这里懒得演示了直接扔别人写好的文档如何更改安装位置以及自定义模型下载位置博客至于用户应该有自己查找资料的能力我就不画蛇添足了模型运行之后本地会默认生成一个就是你在浏览器访问可以看到不论你有没有运行模型只要框架跑起来都可以看到这个搭建与运行模型至于就更简单了官方进去之后选择安装包然后下一步下一步就行下载完之后都是图形界面进去之后你会发现模型找不到不用担心这是国区特色设置起来比较麻烦我们直接在网页下载之后导入即可之前有讲过如何从即其镜像网站上下载这里我们就简单演示一下如何导入模型并运行确定已经安装完了之后我们还是打开控制台然后输入这玩意是自带的命令行工具然后我们输入模型就它会问你是否继续你回答就行然后用上下左右选选第二个就行懒得解释了直接截图翻译第二个选择好后剩下的回车就行会告诉你已经移动成功了然后进去之后我们就可以在这里看到模型然后我们点坐上角第二个那个绿色的块块进入这个界面可以按照上图方式运行模型考虑到我是用笔记本跑的性能比较渣就不用大模型演示了框架和模型无所谓先后你也可以先把模型跑起来再运行框架然后就要配置模型的运行一般来说默认就行重点是上下文就是那个你要是跑角色扮演的游戏的话就把那个调高点当然我这个是小模型最高有效就只能建议你那至少调剩下的选项你要想了解鼠标移过去然后会弹出英文你用翻译软件慢慢翻译就最后点就能运行模型了然后把框架也跑起来跑起来之后它会给你个地址和端口这个是本地的你可以用之类的软件映射到外网什么的这个就是了你把模型跑起来之后可以直接进去聊天选中你运行起来的模型就行我跑的是小模型不支持这个只是演示一下笔记本电脑太渣跑不了的这个至少要显存内存才能勉勉强强跑起来大概秒个字符接入本地不论是还是把模型跑起来之后拿到就是那个地址和端口默认的是默认的是拿到这个之后之前安装好后会弹出页面点那个插头图标如果之前关掉了的话还是运行就能重新打开然后会让你选聊天补全就是一个字一个字蹦文本补全就是等写完了一下再直接全部显示自定义兼容就行自定义那个你就按他的提示把你的端口按它的格式填进去剩下的都不用管然后点击链接我推荐先切到文本补全的选项因为他的连接可以测试你填好之后直接点连接就可以测试有没有连上如果连上的话是绿色红色就是没有连上或出问题连上之后可以发点对话测试一下连不上的话慢慢排查问题吧我折腾这些也花了两天两夜三云服务器模型的搭建各个云服务商的性价比与常用功能对比目前经过我的测试找到以下几个性价比比较高的矩池云他的数据盘元好处是硬盘较大一般的模型文件大概一百多且数据盘可以叠加例如你租两份硬盘大小也扩大两倍但也没这必要还有个好处就是自带十来个映射你不需要再搭穿透了当然服务商官方的穿透有点危你待确定你模型跑出来的数据合不合适坏处就是价格贵而且没有无卡启动低配下文件的功能例如可以用毛小时的价格先下文件下一天恒源云他的硬盘元似乎目前在搞活动价格便宜是目前见过最便宜的但是无卡启动需要大概待冲相当于没有而且硬盘只有扩容到的话一天元的话一天硬盘不用释放时间天他的硬盘元价格也还便宜硬盘天块可以无卡启动小时毛钱这是最大的优点硬盘不用释放时间天算力云他的硬盘价格偏贵但好处是硬盘大至少的模型不需要硬盘扩容了缺点是网络不好而且不能无卡启动最大的好处是提供系统至少对小白来说配起来比简单不少硬盘不用释放时间天以上云服务商你在百度上搜一下就能找到在上搭建模型并穿透基于上搭建前面已经讲过了远程用起来也无非是用电脑上的远程桌面连接去连那个服务器这个实在太基础了都不知道怎么讲连接之后在远程桌面上安装这个和本地安装一模一样你们可以在本地先安装之后跑个小点的模型测试一下把问题全打通再上服务器之后再安装一个穿透软件我这里用的是免费且好用最近打算买个会员也算支持一下之前我有提到过要要用隧道后来发现也是可以用的所以这里纠正一下并且不好用推荐用户可以再找找其他现在我在用以前用过的之前也用过一个现在想想也是可以的当然也可以选择通过官方提供的穿透方法穿透不过考虑到数据的敏感性所以我选择的方案是第三方工具在注册一个账号然后在服务器下载安装包并解压安装运行之后会弹出一个网页输入账号密码登录即可填写好后创建隧道这个就是了像本地那样填写进游戏的框框中就能访问测试在上搭建模型并穿透基于我的服务器是租的有以下两个原因第一是因为我要跑的模型叫做在量化下有所以我扩容后天一个月这个价格我能承受而恒源云一个月则要而上有个显卡叫一台租四台的话这比台便宜不少不说价格了我们继续如果你是在上买的话购买之后首先关机然后以无卡模式开机这种方式可以调试代码下载软件一个小时只要一毛钱开机之后用工具进入进入之后双击终端进入一个终端大概这个样子云商的服务器各种容量参数什么的不好直接用之类的命令查看硬盘占用什么的你点进他的链接会告诉你怎么查而的话你直接上实时监控上看就安装在也很简单直接访问官网然后复制这一条复制之后执行他就会自动安装下载如果出现网络错误的话可能是运气不好科学加速取消科学加速这两条命令大概可以解决问题当然你也可以重新执行一遍官网的下载没准第二次就装上了装上之后运行可以看到跑起来了说明没问题我们先给他终止了可以写进里省的每次执行都要重新输入写最后面就行了执行这两条命令前者的设定使接受外界访问后者给模型下载路径改成数据盘注意这两条一定要执行的开之前都要先执行不然你都找不到文件不然你后面穿透的话会报错误我一开始以为是穿透工具不行后面才发现是因为给拒了这玩意折磨了我两天害得我想方设法的在装图形界面和来运行而垃圾云服务商提供的图形界面安装教程存在根本没法用注意网上写的把这些玩意改拿什么配置文件屁用没有你一定要直接改环境才行改都比改那狗屎配置文件靠谱另外你执行的命令只在你当前的终端管用且个终端就要重新执行这两条命令毕竟那是另外的了执行完之后我们再输入启动注意启动之后运行信息会占用界面我们直接点加号再开个终端就行这个不用管后面还能在上面看日志信息或者你给他调到后台执行不过没必要然后直接拉镜像我推荐玩就用这个模型的那个要的而的但是这些模型主要语料还是英文如果你们有什么好的中文语料训练的模型可以推荐给我然后执行这个至少要显存例如块其实这个跑不了因为不支持分片拉取后面我们会讲一下怎么把这些片片合并这个至少要显存硬盘例如块下载之后直接就行了如果运行成功的话会提示你输入信息你可以测试几下然后我们就可以继续下一步了现在先输入给他关掉注意虽然你和他了但其实还在后台运行运行就可以看到然后你也可以终止但我们这里不用终止安装一个穿透软件这里推荐你进他的官网注册一下快速入门教程系列极点云官网然后阅读他的文档下载一下就行其实就只需要执行一行执行完就安装上了运行会弹出命令帮助登录进穿透软件会看到这个你在终端执行我选中的部分就行了然后执行可以看到他给我们映射了一个地址我们双击点开就可以看到已经能在远程访问到了我们多刷新几次页面可以看到不论是穿透工具还是都记录上了我们的访问请求其实此时这个网址就是我们游戏中需要的接口这时候我们直接拿这个网址输入到游戏的的接口处就了此时发消息可以收到回复有分片的模型合并以及导入本地模型如果你是从云商租的服务器注意本地导入模型一定要看磁盘空间的容量保障你的磁盘空间是模型大小的两倍以上例如模型是你的剩余空间一定要是最好留有一定余量因为导入模型的时候它不会自动给那些分片删了导入完成后事后你可以缩容是只扣一天几毛钱之前忘了说了这里补上现在很多较大的模型大于的模型很多使用分片的方法这种方式便于网络不好的环境下下载使用毕竟的模型下到突然网络中断那岂不是亏死例如之前我下载的模型在下就分成了三个片我们用直接拉这样的模型是不被支持的至少我写这篇文档的时候是这样的拉的时候它会报错告诉我们不支持什么的这个时候我们只有点到上图的页面手动下载上你直接下载就行了上你可以复制链接用在服务器下载也可以直接下载然后用之类的工具上传上去这些都是常识就不细讲了总之例如上面的模型下载完之后你可以看到这样的文件中间有个的编号下面我们进这里下载的压缩包里面包含一系列工具可以评测调整模型什么的这些感兴趣的可以慢慢了解中的推理我们把他下载下来并解压可以看到里面有一系列文件我们把那些带编号的一堆文件丢进这个目录然后以以下命令参数运行下面这个例子是我的模型你要下载你喜欢的模型就按你喜欢的模型名字填呃这个应该不用我解释吧其中他要求的文件名你就写第一个文件的文件名就行第二个文件就是输出出来的文件为保证可读性建议只需要把分片的名字去了就行比如上例那个去了导出之后我们可以看到目录中生成了文件但那些分片的文件还在并占用着大量空间你自己手动删了就行上图是我删了之后只剩下如果是的话直接按之前讲过的方法导入就行但好像还没讲如何导入这里就说明一下首先你随便创建个目录把模型放进去然后写个文件名字叫然后写下这么一行内容如果不行的话用绝对路径模型名字其实这里还可以写一些参数来对模型进行配置但这个有机会了你们可以慢慢研究或者等我更新填坑这里我们先跑通再说然后执行命令模型名称其实就是读取之前写的根据你写的内容进行导入不出意外如果模型比较大的话这需要很长时间你可以新开一个终端输入通过磁盘空间的占用来判断这模型导入到哪一步了如果你租的是的话其他的云商应该也提供相应的命令去文档里找找吧导入成功后你输入即可看见模型就行了如果你是的话看看爆内存是不是在无卡模式运行四详细配置与模型微调目前正在用绅士小说训练模型等我炼完了丹如果效果好的话就跟你们讲讲未完待续但可能挖坑不填多余的话今天用的时候的官网炸了所以如果你们从官网那条下载命令出错的话只好从上拉下来了我不论是还是都下下来一堆垃圾所以就直接下到本地然后上传到服务器不过我没敢用官网的方式放里因为感觉对有专门设置怕出问题就直接解压到目录了另外的那个很垃圾别买用的话上两个显卡利用率只有上四个显卡利用率只有卡信息交换瓶颈了听说能解决这个问题不过我没试等日后试了再更新一下我现在用的是显存一小时三块刚好能跑量化目前常跑的模型是和另外发现一个的中文角色扮演小模型这个模型的量化可以用来跑一小时只要一块钱如果安装穿透转发之后显示那个监听端口是而不是下面图中的方括号而且访问出错误的话把删了然后直接下载文件解压到本地执行就像之前说的那样这样的话就使用的环境变量了最后那些整活向的卡很有趣规则类怪谈也可以玩一玩男女良学校那个卡很有趣改成类型的简直最好玩了本文完结逃',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-03-02 19:48:54',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/style.css" media="print" onload="this.media='all'" crossorigin="anonymous">
+<style>
+  /* 全局字体：霞鹜文楷（衬线字体），兜底用宋体 */
+  body {
+    font-family: "LXGW WenKai Screen", "SimSun", serif !important;
+    font-display: swap; /* 字体加载时不闪跳 */
+  }
+  /* 标题/按钮/标签等元素适配（保持霞鹜文楷，兜底宋体） */
+  h1, h2, h3, h4, 
+  .TagsLabel, 
+  .Button, 
+  .DiscussionListItem-count, 
+  .item-discussion-views {
+    font-family: "LXGW WenKai Screen", "SimSun", serif !important;
+  }
+
+  /* 编辑器内容同步字体 */
+  .redactor-layer, .fr-element {
+    font-family: "LXGW WenKai Screen", "SimSun", serif !important;
+  }
+
+  /* 补充：修复导航/评论区/代码块字体（避免漏覆盖） */
+  .nav, .comment-content, .post-content {
+    font-family: "LXGW WenKai Screen", "SimSun", serif !important;
+  }
+
+  /* 代码块保留等宽字体（霞鹜文楷不适合代码） */
+  pre, code {
+    font-family: consolas, Menlo, "SimHei", monospace !important;
+  }
+</style>
+<meta name="generator" content="Hexo 8.1.1"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://files.zhouyi.cn.mt/Avatar.png"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://hexo.anheyu.com/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">Zhouyi's Blog</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>3</sup></a><a href="/tags/Minecraft/" style="font-size: 1.05rem;">Minecraft<sup>1</sup></a><a href="/tags/Web/" style="font-size: 1.05rem;">Web<sup>1</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 1.05rem;">日常<sup>4</sup></a><a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.05rem;">服务器<sup>4</sup></a><a href="/tags/%E6%B0%B4%E5%B8%96/" style="font-size: 1.05rem;">水帖<sup>1</sup></a><a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 1.05rem;">踩坑<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/03/"><span class="card-archive-list-date">三月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/01/"><span class="card-archive-list-date">一月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/12/"><span class="card-archive-list-date">十二月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2026-03-02T11:45:25.000Z" title="发表于 2026-03-02 19:45:25">2026-03-02</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-03-02T11:48:54.415Z" title="更新于 2026-03-02 19:48:54">2026-03-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=b7205b0b-c1a7-89b0-ca70-7ced95312583"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://zhouyi.cn.mt/AI%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6SillyTavern%EF%BC%88%E9%85%92%E9%A6%86%EF%BC%89%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%B8%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/"><header><h1 id="CrawlerTitle" itemprop="name headline">AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Zhouyi</span><time itemprop="dateCreated datePublished" datetime="2026-03-02T11:45:25.000Z" title="发表于 2026-03-02 19:45:25">2026-03-02</time><time itemprop="dateCreated datePublished" datetime="2026-03-02T11:48:54.415Z" title="更新于 2026-03-02 19:48:54">2026-03-02</time></header><blockquote>
+<p>简介：本文介绍SillyTavern（酒馆）角色扮演游戏的玩法。并考虑到AI模型服务商API的不稳定性，以及功能限制，本文演示基于本地系统与基于云服务器的AI模型搭建，为SillyTavern的使用提供API接口。文中将介绍SillyTavern的搭建即其原理；介绍AI模型框架，AI模型，并分析优劣与问题，同时推荐相应模型；介绍云服务器的选择并根据需求分析各云服务商和云服务器，以便读者选择；分别在Linux和Windows环境下搭建模型；介绍如何穿透没有购买公网的云服务器并通过转发API配置SillyTavern框架；</p>
+</blockquote>
+<p>建议使用<a target="_blank" rel="noopener" href="https://www.rainyun.com/MTA0Mjc5_">雨云 - 新一代云服务提供商</a></p>
+<p><strong>一、SillyTavern的搭建与原理</strong></p>
+<p><strong>1. SillyTavern的介绍</strong></p>
+<p>SillyTavern为许多LLM API（KoboldAI&#x2F;CPP、Horde、NovelAI、Ooba、Tabby、OpenAI、OpenRouter、Claude、Mistral等）提供了一个单一的统一界面，适合移动设备的布局，视觉小说模式，Automatic1111和ComfyUI API图像生成集成，TTS，WorldInfo（传说书），可定制的用户界面，自动翻译，比你想要或需要的更多的提示选项，以及通过第三方扩展带来的无尽增长潜力。</p>
+<p>SillyTavern（或简称 ST）是一个本地安装的用户界面，允许您与文本生成 LLM、图像生成引擎和 TTS 语音模型进行交互。</p>
+<p>—–来自官方的解释</p>
+<p>不过能点开看到这里想必对这类软件已经有了了解，所以就不多解释了。我们直接进入正题。</p>
+<p><strong>2. SillyTavern的下载与安装</strong></p>
+<p>这是SillyTavern的文档网站<a target="_blank" rel="noopener" href="https://docs.sillytavern.app/" title="https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;https:&#x2F;&#x2F;docs.sillytavern.app&#x2F;"><u><span class="15">https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/https://docs.sillytavern.app/</span></u><u><span class="15">https://docs.sillytavern.app/</span></u></a></p>
+<p>这是SillyTavern的下载网站<a target="_blank" rel="noopener" href="https://github.com/SillyTavern/SillyTavern" title="GitHub - SillyTavern&#x2F;SillyTavern: LLM Frontend for Power Users.https:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavernhttps:&#x2F;&#x2F;github.com&#x2F;SillyTavern&#x2F;SillyTavern"><u><span class="15">GitHub - SillyTavern&#x2F;SillyTavern: LLM Frontend for Power Users.https://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavernhttps://github.com/SillyTavern/SillyTavern</span></u><u><span class="15">https://github.com/SillyTavern/SillyTavern</span></u></a></p>
+<p>网上的安装教程很多都是AI写的，所以我们直接跟着GitHub的安装流程走就好了。</p>
+<p>​</p>
+<p>如果对GitHub不熟悉的读者，可以阅读这篇文章，云API也可以参考他。</p>
+<p><a target="_blank" rel="noopener" href="https://www.rainlain.com/index.php/2024/11/19/2645/" title="WINNAS轻松搭：SillyTavern（酒馆）从入门到精通 - 梦雨玲音"><u><span class="15">WINNAS<font face="宋体">轻松搭：</font><font face="Calibri">SillyTavern</font><font face="宋体">（酒馆）从入门到精通 </font><font face="Calibri">- </font><font face="宋体">梦雨玲音</font></span></u></a></p>
+<p>不过我想能用CSDN的用户，大都知道怎么食用GitHub吧？ </p>
+<p><strong>3. SillyTavern的玩法介绍及其原理</strong></p>
+<p>考虑到能阅读CSDN的读者，大部分都是计算机相关的人士。咱们都是理工科的，没必要整那些虚的。所以就直接上这游戏的原理。</p>
+<p>等看一遍这游戏的原理，以及角色卡、世界书（mod）的编写。一眼就能看明白这游戏怎么玩，马上就能入手了。</p>
+<p>考虑到网上已经有这类视频很好的讲解，没必要听我在这里叭叭，所以我们直接放视频链接。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qUkgYuEJL" title="sillytarven&#x2F;酒馆 创建角色卡基础0_哔哩哔哩_bilibili"><u><span class="15">sillytarven&#x2F;<font face="宋体">酒馆 创建角色卡基础</font><font face="Calibri">0_</font><font face="宋体">哔哩哔哩</font><font face="Calibri">_bilibili</font></span></u></a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV172kgY6E1e" title="sillytarven&#x2F;酒馆 创建角色卡基础1 世界书和状态栏_哔哩哔哩_bilibili"><u><span class="15">sillytarven&#x2F;<font face="宋体">酒馆 创建角色卡基础</font><font face="Calibri">1 </font><font face="宋体">世界书和状态栏</font><font face="Calibri">_</font><font face="宋体">哔哩哔哩</font><font face="Calibri">_bilibili</font></span></u></a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV186CBYGEyp" title="sillytarven&#x2F;酒馆 创建角色卡 平然&#x2F;常识修改_哔哩哔哩_bilibili"><u><span class="15">sillytarven&#x2F;<font face="宋体">酒馆 创建角色卡 平然</font><font face="Calibri">&#x2F;</font><font face="宋体">常识修改</font><font face="Calibri">_</font><font face="宋体">哔哩哔哩</font><font face="Calibri">_bilibili</font></span></u></a></p>
+<p>这个是安卓手机上的操作。  </p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FHBjY7E18" title="酒馆使用简单教程_哔哩哔哩_bilibili"><u><span class="15"><font face="宋体">酒馆使用简单教程</font>_<font face="宋体">哔哩哔哩</font><font face="Calibri">_bilibili</font></span></u></a></p>
+<p>考虑到新人可能一时间找不到资源，下面我们再补充一些卡包，这些是我从群里找到的，链接是群里提供的，你们看情况下载就好。</p>
+<p><strong>4. SillyTavern的原理及相关社区</strong></p>
+<p>qq上搜一下群，或者贴吧。</p>
+<p>                                                                  
+                                                               
+                                                                                                   </p>
+<p>不过目前由于某些原因，现在类脑和拟人现在关闭了新人入群的渠道，等后面应该会开放。（写文时是2025&#x2F;2&#x2F;6）</p>
+<p><strong>考虑到一些问题链接都删了。</strong></p>
+<p>如果不知道Discord的话，就自己搜一下相关信息，这里不好讲太细。</p>
+<p><strong>5. SillyTavern在Linux云服务器上搭建</strong></p>
+<p>考虑到本地每次都要点开很麻烦，还好那些服务器云商有新客优惠，比我我这台一年29还是39忘了。似乎是在华为云？反正这些云商现在已经被我薅了个遍。你们挨个看看哪个便宜就行。</p>
+<p>另外，不要买大陆的服！不然下载的时候会遇到各种麻烦。推荐港区。</p>
+<p>如果实在不想掏这钱的话，就走内网穿透吧。家里找个不要的电脑把SillyTavern跑起来，然后用软件内网穿透。注意Windows要开防火墙。Linux…Linux下面我们会讲。</p>
+<p>我用的是debian 11，你们最好买ubuntu22.04以上，垃圾debian 11，apt的nodejs是v12，等会安装会比较麻烦。</p>
+<p>总之你们直接从官网git clone。</p>
+<p>如果不慎租了大陆的服，那就像我一样，直接给他压缩包下载下来。</p>
+<p>​</p>
+<p>下载下来之后，不管你们是用winscp也好，还是其他什么也好，总之上传上去。</p>
+<p>输入unzip文件名，直接解压。</p>
+<p>​</p>
+<p>然后可以看到这些。</p>
+<p>直接.&#x2F;start.sh运行。</p>
+<p>它会自动安装nodejs和npm之类的环境（大陆的服的话，就多试几次，可能就ok了）</p>
+<p>你用apt安装如果版本低的话，比如我这儿是12版，那就不行。看要求至少要22版的。</p>
+<p>我试过从官网上把nodejs考下来（大陆服就下不下来，我是从本地下载的二进制文件，然后本地上传上去的），whereis查一下，然后挨个放进&#x2F;usr里。但是nodejs不认。</p>
+<p>​</p>
+<p>所以只能让它慢慢下了。</p>
+<p>总之你运行通过后，</p>
+<p>​</p>
+<p>会给出这个页面。</p>
+<p>然后你ctrl+c，终止之后，改配置文件。</p>
+<p>vim config.yaml</p>
+<p>​</p>
+<p>改成我这样的就行。</p>
+<p>我用户名和密码是默认的，懒得改了，你要改的话要加双引号！！！</p>
+<p>例如</p>
+<p>username: “woc”</p>
+<p>password: “azhe”</p>
+<p>改完之后，运行，输入账号密码，上去看看管不管使。（默认用户名和密码就是user password）</p>
+<p>​</p>
+<p>管使了，我们</p>
+<p>终止之后。</p>
+<p>nohub bash start.sh &amp;</p>
+<p>给它调到后台运行，然后就可以exit了。</p>
+<p><strong>ps.另外有个怪事，我试图</strong></p>
+<p>ctrl+z，给这进程先暂停调到后台。</p>
+<p>然后</p>
+<p>bg jobspec %1</p>
+<p>disown -h %1</p>
+<p>先让它在后台运行起来，然后再让它从终端里面滚蛋，挂靠到系统上。</p>
+<p>用jobs可以看到它不在jobs里了。</p>
+<p>不关终端还能跑，但是一关终端，服务就宕机了，没搞清楚是怎么一回事，等日后有时间了研究一下。不过这套玩意太拉胯了，你们要用的话，建议还是用tmux吧。。。</p>
+<p><strong>二、AI模型框架和AI模型的选择与本地搭建与云服务器的选择</strong></p>
+<p><strong>1. AI模型常识与推荐</strong></p>
+<p>原本我想仔细写写，但是想了想还是算了，直接放个看过的文章。这比我再嚼一遍喂给读者会保留更多原有信息。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/opus/1002954346310139907" title="【极简+全面+网盘】windows快速部署角色扮演大模型 - 哔哩哔哩"><u><span class="15"><font face="宋体">【极简</font>+<font face="宋体">全面</font><font face="Calibri">+</font><font face="宋体">网盘】</font><font face="Calibri">windows</font><font face="宋体">快速部署角色扮演大模型 </font><font face="Calibri">- </font><font face="宋体">哔哩哔哩</font></span></u></a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/opus/1005303336915697669" title="角色扮演大模型的选用建议 - 哔哩哔哩"><u><span class="15"><font face="宋体">角色扮演大模型的选用建议</font> - <font face="宋体">哔哩哔哩</font></span></u></a></p>
+<p>具体我也不好写太细，后面你跟着这些模型慢慢找相关信息就ok了。</p>
+<p>这是我的这几天搜索的比较有趣的模型（很多我也没试过，想玩玩的可以试一下）</p>
+<p><a target="_blank" rel="noopener" href="https://huggingface.co/cgxjdzz/Qwen-2.5-7B-Instruct-novel-lora">https://huggingface.co/cgxjdzz/Qwen-2.5-7B-Instruct-novel-lora</a><br>saiga_nemo_12b</p>
+<p><a target="_blank" rel="noopener" href="https://huggingface.co/mradermacher/Dans-PersonalityEngine-V1.1.0-12b-GGUF/tree/main">https://huggingface.co/mradermacher/Dans-PersonalityEngine-V1.1.0-12b-GGUF/tree/main</a> <br>Cydonia-v1.3-Magnum-v4-22B</p>
+<p>本地大模型推荐</p>
+<p>magnum-32b和magnum-72b v2</p>
+<p>注意推荐v2版本，v4版本则是想象力丰富但智商降低</p>
+<p>这个系列模型基于阿里巴巴的qwen，中文很不错</p>
+<p>是比较万金油的模型，非常适合404</p>
+<p>vathene-v1.2.i1-IQ4_XS</p>
+<p>turbcat-instruct-72b</p>
+<p>中文不错，更拟人的模型，适合扮演具体的，性格鲜明的角色进行对话，但不适合系统类，世界类等npc较多，逻辑需求交给的场景，也不是很擅长写旁白剧情</p>
+<p>hf-mirror.com&#x2F;Sao10K&#x2F;72B-Qwen2.5-Kunou-v1</p>
+<p>hf-mirror.com&#x2F;sophosympatheia&#x2F;Evathene-v1.3</p>
+<p>hf-mirror.com&#x2F;blockblockblock&#x2F;turbcat-instruct-72b-bpw4.6-exl2<br>据说中文任务量和英文一样多。</p>
+<p>hf-mirror.com&#x2F;Doctor-Shotgun&#x2F;L3.3-70B-Magnum-v4-SE<br>据说角色扮演优化。</p>
+<p>hf-mirror.com&#x2F;Sao10K&#x2F;L3.3-70B-Euryale-v2.3</p>
+<p>hf-mirror.com&#x2F;mistralai&#x2F;Mistral-Nemo-Instruct-2407<br>网上说12b可当70b使，我不太信。</p>
+<p>hf-mirror.com&#x2F;MarinaraSpaghetti&#x2F;NemoMix-Unleashed-12B</p>
+<p><a target="_blank" rel="noopener" href="https://hf-mirror.com/ValueFX9507/Tifa-Deepsex-14b-CoT-GGUF-Q4">https://hf-mirror.com/ValueFX9507/Tifa-Deepsex-14b-CoT-GGUF-Q4</a><br>国产cosplay小模型，日后可以试试。</p>
+<p><a target="_blank" rel="noopener" href="https://hf-mirror.com/Tifa-RP/Tifa-7B-Qwen2-v0.1-GGUF">https://hf-mirror.com/Tifa-RP/Tifa-7B-Qwen2-v0.1-GGUF</a><br>国产小模型</p>
+<p>最近找到了专门讨论AI模型的社区，社区中有大佬对市面上的模型进行测评，比我一小白详细的多了。</p>
+<p>下面我就直接放大佬的测评链接。</p>
+<p>                                                                                                                                                                                                  （已删除）</p>
+<p>再后面教程中我推荐的模型不必理会，那都是几天前的我，几天前的我还是个菜。 </p>
+<p><strong>3. 两种AI模型框架ollama与lm studio的比较</strong></p>
+<p>ollama下载模型方便一点，直接换镜像网址就ok了。ollama对Linux的支持非常好，没有图形界面也能用。例如你从云服务器哪儿租了个显卡，而对方只提供给你个终端CLI，至少你不用倒腾装图形界面vnc之类的东西。</p>
+<p>lm studio的话，你要替换文件，比较麻烦，或者你到huggingface上下载下来模型，然后本地导入进去。对Linux的服务器非常不友好，因为这玩意的运行必须要有图形界面。大多数云服务商不提供，你要手动安装图形界面，然后用vnc连过去。</p>
+<p>后面这两种我都会介绍到，你们看需求选用就好。</p>
+<p><strong>4. huggingface的介绍与镜像</strong></p>
+<p>官网是<a target="_blank" rel="noopener" href="https://huggingface.co/" title="huggingface.co"><u><span class="15">huggingface.co</span></u></a></p>
+<p>简单来将，你可以把他当一个模型共享网站就行，想要什么模型，有人共享出来，你就能下载下来跑。当然官网在国外，考虑到下载速度，一般我们用国内的镜像站<a target="_blank" rel="noopener" href="https://hf-mirror.com/" title="HF-Mirror"><u><span class="15">HF-Mirror</span></u></a>。</p>
+<p>简单来说，如果有人分享模型，你直接在上面搜名字就好。</p>
+<p>​​</p>
+<p>点进去就能看到模型简介。 </p>
+<p>​​</p>
+<p>这儿可以找到他发布的相关模型。</p>
+<p>​​ </p>
+<p>这儿可以找到量化对应的模型，相信看了前面链接里的教程，你应该知道量化是啥。（如果提供的话）</p>
+<p>​​ </p>
+<p>点击之后，例如点击Q4_K_M进去之后，可以直接把模型下载到本地（看到那个Download没？</p>
+<p>​​ </p>
+<p> gguf是指gguf格式。</p>
+<p>你也可以中这里下载。</p>
+<p>​​</p>
+<p>如果直接下载的话，我推荐用IDM，至少下载的快一点。 </p>
+<p><strong>5. ollama搭建与运行模型</strong></p>
+<p>访问ollama的官网，直接下载，安装就行。</p>
+<p><a target="_blank" rel="noopener" href="https://ollama.com/" title="Ollama"><u><span class="15">Ollama</span></u></a></p>
+<p>ollama的安装和下载非常傻瓜化，windows上就是下载之后，下一部下一步，Linux就是执行他提供的那条命令就行。</p>
+<p>如果实在看不懂的话，可以看他的文档。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ollama/ollama/tree/main/docs" title="【极简+全面+网盘】windows快速部署角色扮演大模型 - 哔哩哔哩"><u><span class="15"><font face="宋体">【极简</font>+<font face="宋体">全面</font><font face="Calibri">+</font><font face="宋体">网盘】</font><font face="Calibri">windows</font><font face="宋体">快速部署角色扮演大模型 </font><font face="Calibri">- </font><font face="宋体">哔哩哔哩</font></span></u></a></p>
+<p>安装完之后，打开cmd，直接输入ollama，如果出现提示就说明安装成功了。</p>
+<p>​​</p>
+<p>如果提示没有运行，你就输入 ollama serve 运行就行了。</p>
+<p>用ollama下载模型的话，你首先知道要下载的模型叫什么。</p>
+<p>ollama推荐了一些常见的模型（不过那些模型不适合我们玩），所以，你拿到别人推荐的模型名后。到huggingface的官网上，查他的名字。</p>
+<p>例如别人推荐了个叫Dans-PersonalityEngine-V1.1.0-12b-GGUF的模型。</p>
+<p>​​</p>
+<p>你查到之后点进去。</p>
+<p>​</p>
+<p>可以看看他的介绍（如果想看的话）</p>
+<p>然后直接复制这些​</p>
+<p>再看下面的量化参数，选一个你想要的参数，例如我打算下个最小的IQ2_S​</p>
+<p>然后就在cmd里写，注意IQ2_S前面要用冒号。当然如果不带参数的话就会下载推荐的默认模型。</p>
+<p>有时候模型没有给你提供量化的选择，你就直接写网站，下载默认的就行。</p>
+<p>​</p>
+<p>如果成功的话，你可以看到他正在下载。</p>
+<p>下载完成后，输入ollama list可以查看下载到本地的模型。（我就不下了，占空间）</p>
+<p>​</p>
+<p>可以看到我这儿下载了两个模型，一个llama3.2一个就是之前说的那个。</p>
+<p>你想运行的话，就输入ollama run [模型名]就好</p>
+<p>​</p>
+<p>退出的话，就输入&#x2F;bye就行。</p>
+<p>当然这只是退出对话，你想终止模型运行的话，就输入ollama stop，如果不知道运行有哪些模型的话，就ollama ps查看，删除模型的话就ollama rm。</p>
+<p>​</p>
+<p>（之前卡了一下删除命令没有截到，不过看看就好）</p>
+<p>如果你忘了这些命令的话，直接输入ollama执行就能查看有什么命令。</p>
+<p>​</p>
+<p>上面几个就是最常用的。</p>
+<p>至于模型下载路径，这里懒得演示了，直接扔别人写好的文档</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40064717/article/details/145406752" title="【deepseek-r1】ollama如何更改安装位置以及自定义模型下载位置-CSDN博客"><u><span class="15"><font face="宋体">【</font>deepseek-r1<font face="宋体">】</font><font face="Calibri">ollama</font><font face="宋体">如何更改安装位置以及自定义模型下载位置</font><font face="Calibri">-CSDN</font><font face="宋体">博客</font></span></u></a></p>
+<p>至于Linux用户，应该有自己查找资料的能力，我就不画蛇添足了。</p>
+<p>ollama模型运行之后，本地会默认生成一个api，就是127.0.0.1:11434。</p>
+<p>你在浏览器访问可以看到</p>
+<p>​</p>
+<p>不论你有没有运行AI模型，只要框架跑起来，都可以看到这个。</p>
+<p><strong>6. Im studio搭建与运行模型</strong></p>
+<p>至于lm studio就更简单了，</p>
+<p><a target="_blank" rel="noopener" href="https://lmstudio.ai/" title="LM Studio - Discover, download, and run local LLMs"><u><span class="15">LM Studio - Discover, download, and run local LLMs</span></u></a></p>
+<p>官方进去之后，选择安装包，然后下一步下一步就行，下载完之后都是图形界面。</p>
+<p>进去之后，你会发现模型找不到，不用担心，这是国区特色。</p>
+<p>​</p>
+<p>设置起来比较麻烦，我们直接在网页下载之后导入即可。</p>
+<p>之前有讲过如何从huggingface即其镜像网站上下载，这里我们就简单演示一下如何导入模型并运行。</p>
+<p>确定已经安装完了lm studio之后，我们还是打开控制台。</p>
+<p>然后输入lms，这玩意是lm studio自带的命令行工具。</p>
+<p>​</p>
+<p>然后，我们输入lms import 模型 就ok。</p>
+<p>​</p>
+<p>它会问你是否继续，你回答y就行。</p>
+<p>然后用上下左右选，选第二个就行。</p>
+<p>​</p>
+<p>懒得解释了，直接截图翻译。</p>
+<p>​</p>
+<p>第二个选择好后，剩下的回车就行。</p>
+<p>​</p>
+<p>会告诉你已经移动成功了。</p>
+<p>然后进去之后，我们就可以在这里看到模型。</p>
+<p>​</p>
+<p>然后我们点坐上角第二个那个绿色的块块，进入这个界面。</p>
+<p>​</p>
+<p>可以按照上图方式运行模型，</p>
+<p>考虑到我是用笔记本跑的，性能比较渣，就不用大模型演示了。框架和模型无所谓先后，你也可以先把模型跑起来，再运行LM框架。</p>
+<p>然后就要配置模型的运行。一般来说默认就行，重点是上下文，就是2048那个，你要是跑角色扮演的游戏的话，就把那个调高点。（当然我这个是小模型，最高有效就只能2048，建议你那至少调8192）。剩下的选项你要想了解，鼠标移过去，然后会弹出英文，你用翻译软件慢慢翻译就ok。</p>
+<p>​</p>
+<p>最后点load model就能运行模型了。</p>
+<p>​</p>
+<p>然后把框架也跑起来。跑起来之后，它会给你个ip地址和端口，这个是本地的（你可以用frp之类的软件映射到外网什么的），这个就是API了。</p>
+<p>你把模型跑起来之后，可以直接进去聊天，选中你运行起来的模型就行。我跑的是小模型，不支持这个，只是演示一下（笔记本电脑太渣，跑不了27b的）这个至少要rx580 8g显存+32g内存才能勉勉强强跑起来，大概1秒2-3个字符。</p>
+<p>​</p>
+<p><strong>7. SillyTavern接入本地API</strong></p>
+<p>不论是ollama还是lm studio，把AI模型跑起来之后。拿到API（就是那个IP地址和端口）</p>
+<p>ollama默认的是127.0.0.1:14434</p>
+<p>lm studio默认的是127.0.0.1:1234</p>
+<p>拿到这个之后，之前SillyTavern安装好后，会弹出页面，点那个插头图标。（如果之前关掉了的话，还是运行start.bat就能重新打开）</p>
+<p>​</p>
+<p>然后会让你选API，（聊天补全就是一个字一个字蹦，文本补全就是等AI写完了一下再直接全部显示），自定义兼容openai就行。</p>
+<p>自定义那个你就按他的提示把你的127.0.0.1:端口，按它的格式填进去，剩下的都不用管。</p>
+<p>然后点击链接，我推荐先切到文本补全的选项，因为他的连接可以测试。</p>
+<p>​</p>
+<p>你填好之后，直接点连接就可以测试有没有连上。</p>
+<p>​</p>
+<p> 如果连上的话是绿色，红色就是没有连上或出问题。</p>
+<p>​</p>
+<p>连上之后，可以发点对话测试一下。</p>
+<p>连不上的话…慢慢排查问题吧。&gt;_&lt; 我折腾这些也花了两天两夜。 </p>
+<p><strong>三、云服务器模型的搭建</strong></p>
+<p><strong>1. 各个云服务商的性价比与常用功能对比</strong></p>
+<p>目前经过我的测试，找到以下几个性价比比较高的，</p>
+<p>矩池云：他的4090*24g 200g数据盘 2.8元 好处是硬盘较大，一般70b的模型，文件大概一百多g。且数据盘可以叠加，例如你租两份，硬盘大小也扩大两倍，但400g也没这必要。还有个好处就是自带十来个http映射，你不需要再搭穿透了（当然服务商官方的穿透有点危，你待确定你模型跑出来的数据合不合适。）。坏处就是价格贵，而且没有无卡启动低配下文件的功能（例如autodl，可以用1毛1小时的价格，先下文件下一天）</p>
+<p>恒源云：他的4090*24g 50g硬盘 1.6元（似乎目前在搞活动），价格便宜，是目前见过最便宜的，但是无卡启动需要lv2，大概待冲1000，相当于没有。而且硬盘只有50，扩容到200的话一天1.44元，150的话一天1.16。硬盘不用释放时间，15天。</p>
+<p>autodl：他的4090*24g 50g硬盘 1.88元，价格也还便宜。硬盘+150g，1天1块。可以无卡启动，1小时1毛钱，这是最大的优点。硬盘不用，释放时间15天。</p>
+<p>算力云：他的4090*24g 200g硬盘 2.24，价格偏贵，但好处是硬盘大，至少130b q4的模型，不需要硬盘扩容了。缺点是网络不好，而且不能无卡启动。最大的好处是提供windows系统，至少对小白来说配起来比linux简单不少。硬盘不用，释放时间7天。</p>
+<p>以上云服务商，你在百度上搜一下就能找到，</p>
+<p><strong>2. 在Windows上搭建模型，并穿透（基于lm studio）</strong></p>
+<p>​</p>
+<p>windows上搭建，前面已经讲过了，远程用起来，也无非是用电脑上的远程桌面连接去连那个服务器。这个实在太基础了，都不知道怎么讲。</p>
+<p>连接之后，在远程桌面上安装lm studio，这个和本地安装一模一样。（你们可以在本地先安装之后，跑个小点的模型测试一下，把问题全打通，再上服务器。）</p>
+<p>之后再安装一个穿透软件，我这里用的是Cpolar，免费且好用，最近打算买个会员也算支持一下。（之前我有提到过要要用http隧道，后来发现tcp也是可以用的，所以这里纠正一下。并且cpolar不好用，推荐用户可以再找找其他frp，现在我在用以前用过的sakura，之前也用过一个openfrp，现在想想也是可以的。）</p>
+<p>当然也可以选择通过官方提供的穿透方法穿透，不过考虑到数据的敏感性，所以我选择的方案是第三方工具。</p>
+<p>在cpolar注册一个账号，然后在服务器下载安装包并解压安装。</p>
+<p>运行之后，会弹出一个网页，输入账号密码登录即可。</p>
+<p>​</p>
+<p>填写好后创建隧道。</p>
+<p>​</p>
+<p>这个就是API了，像本地那样，填写进游戏的API框框中，就能访问测试。 </p>
+<p><strong>3. 在Linux上搭建模型，并穿透（基于ollama）</strong></p>
+<p>我的linux服务器是租的AutoDl。</p>
+<p>有以下两个原因，第一是因为我要跑的模型叫做anthracite-org&#x2F;magnum-v4-123b-gguf，在4q量化下，有73.2g，所以我扩容25g后，1天0.14，一个月4.2。这个价格我能承受。而恒源云一个月则要8.7。</p>
+<p>而autodl上有个显卡叫vGPU-32GB，一台1.58，租四台的话，6.32，这比5台4090便宜不少。</p>
+<p>不说价格了，我们继续。</p>
+<p>如果你是在autodl上买的话，购买之后，首先关机，然后以无卡模式开机，这种方式可以调试代码，下载软件，一个小时只要一毛钱。​</p>
+<p>​</p>
+<p>开机之后，用jupyterlab工具进入，进入之后，双击终端进入一个终端。</p>
+<p>​</p>
+<p>大概这个样子。</p>
+<p>云商的服务器，各种容量参数什么的不好直接用df -h，free -m ，top之类的命令查看。</p>
+<p>硬盘占用什么的，你点进他的链接，会告诉你怎么查。而htop的话，你直接上实时监控上看就ok。</p>
+<p>​</p>
+<p>安装ollama在Linux也很简单，直接访问ollama官网，</p>
+<p>​</p>
+<p>然后复制 curl -fsSL <a target="_blank" rel="noopener" href="https://ollama.com/install.sh">https://ollama.com/install.sh</a> | sh 这一条</p>
+<p>​</p>
+<p>复制之后执行，他就会自动安装下载。</p>
+<p>如果出现网络错误的话，可能是运气不好。</p>
+<p>source &#x2F;etc&#x2F;network_turbo # 科学加速</p>
+<p>unset http_proxy &amp;&amp; unset https_proxy # 取消科学加速</p>
+<p>这两条命令大概可以解决问题，当然你也可以重新执行一遍ollama官网的下载，没准第二次就装上了。</p>
+<p>装上之后，运行ollama serve，可以看到跑起来了，说明没问题。</p>
+<p>​</p>
+<p>我们先ctrl+c给他终止了。</p>
+<p>export OLLAMA_HOST&#x3D;”0.0.0.0:11434”</p>
+<p>export OLLAMA_MODELS&#x3D;&#x2F;root&#x2F;autodl-tmp&#x2F;models</p>
+<h1 id="可以写进-bashrc里，省的每次执行都要重新输入。写最后面就行了。"><a href="#可以写进-bashrc里，省的每次执行都要重新输入。写最后面就行了。" class="headerlink" title="可以写进.bashrc里，省的每次执行都要重新输入。写最后面就行了。"></a>可以写进.bashrc里，省的每次执行都要重新输入。写最后面就行了。</h1><p>执行这两条命令，前者的设定使ollama接受外界访问，后者给模型下载路径改成数据盘。</p>
+<p>注意这两条一定要执行的，（ollama serve开之前都要先执行，不然你list都找不到文件），不然你后面穿透的话，会报403错误，我一开始以为是穿透工具不行，后面才发现是因为ollama给拒了。这玩意折磨了我两天，害得我想方设法的在linux装图形界面和vnc来运行lm studio。而垃圾云服务商提供的图形界面安装教程存在bug，根本没法用。</p>
+<p>注意，网上写的把这些玩意改拿什么配置文件，屁用没有，你一定要直接改环境才行。改.bashrc都比改那狗屎配置文件靠谱。</p>
+<p>另外你执行的命令，只在你当前的终端管用。且个终端就要重新执行这两条命令，毕竟那是另外的bash了。</p>
+<p>执行完之后，我们再输入 ollama serve 启动ollama。</p>
+<p><u><span><font face="宋体">注意启动之后，运行信息会占用界面，我们直接点加号再开个终端就行，这个不用管，后面还能在上面看日志信息。或者你给他调到后台执行，不过没必要。</font></span></u></p>
+<p>然后直接ollama拉镜像，我推荐玩st就用magnum-v4这个模型，123b q4km的那个要73.2g，72b q4的47g，而q5的54.5g。</p>
+<p>但是这些模型主要语料还是英文，如果你们有什么好的中文语料训练的模型，可以推荐给我。</p>
+<p>然后执行，</p>
+<p>ollama pull hf-mirror.com&#x2F;anthracite-org&#x2F;magnum-v4-72b-gguf:Q4_K_M</p>
+<p>这个至少要48g显存，例如2块4090。</p>
+<p>ollama pull hf-mirror.com&#x2F;anthracite-org&#x2F;magnum-v4-123b-gguf:Q4_K_M</p>
+<h1 id="其实这个跑不了，因为ollama不支持分片gguf拉取。后面我们会讲一下怎么把这些片片合并。"><a href="#其实这个跑不了，因为ollama不支持分片gguf拉取。后面我们会讲一下怎么把这些片片合并。" class="headerlink" title="其实这个跑不了，因为ollama不支持分片gguf拉取。后面我们会讲一下怎么把这些片片合并。"></a>其实这个跑不了，因为ollama不支持分片gguf拉取。后面我们会讲一下怎么把这些片片合并。</h1><p>这个至少要90g显存75g硬盘，例如4块4090。</p>
+<p>下载之后，直接 ollama run 就行了。</p>
+<p>如果运行成功的话，会提示你输入信息，你可以测试几下，然后我们就可以继续下一步了。</p>
+<p>现在先输入 &#x2F;bye 给他关掉。</p>
+<p><u><span><font face="宋体">注意，虽然你和他</font>bye<font face="宋体">了，但其实</font><font face="Calibri">AI</font><font face="宋体">还在后台运行。运行</font><font face="Calibri">ollama ps</font><font face="宋体">就可以看到，然后你也可以</font><font face="Calibri">ollama stop</font><font face="宋体">终止。但我们这里不用终止。</font></span></u></p>
+<p>安装一个穿透软件，这里推荐Cpolar。</p>
+<p>你进他的官网注册一下。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cpolar.com/blog/cpolar-quick-start-tutorial-ubuntu-series" title="Cpolar快速入门教程：Ubuntu系列 - cpolar 极点云官网"><u><span class="15">Cpolar<font face="宋体">快速入门教程：</font><font face="Calibri">Ubuntu</font><font face="宋体">系列 </font><font face="Calibri">- cpolar </font><font face="宋体">极点云官网</font></span></u></a></p>
+<p>然后阅读他的文档下载一下就行，其实就只需要执行一行。</p>
+<p>curl -L <a target="_blank" rel="noopener" href="https://www.cpolar.com/static/downloads/install-release-cpolar.sh">https://www.cpolar.com/static/downloads/install-release-cpolar.sh</a> | sudo bash</p>
+<p>执行完就安装上了。</p>
+<p>运行 cpolar 会弹出命令帮助。</p>
+<p>​</p>
+<p>登录进穿透软件，会看到这个</p>
+<p>​</p>
+<p>你在终端执行我选中的部分就行了。</p>
+<p>然后执行</p>
+<p>cpolar http 11434</p>
+<p>​</p>
+<p>可以看到，他给我们映射了一个地址，我们双击点开就可以看到已经能在远程访问到了。</p>
+<p>​</p>
+<p>我们多刷新几次页面。 </p>
+<p>可以看到不论是穿透工具，还是ollama都记录上了我们的访问请求。</p>
+<p>​</p>
+<p>​</p>
+<p>其实此时这个网址，就是我们游戏中需要的api接口。</p>
+<p>这时候我们直接拿这个网址，输入到游戏的的接口处就OK了。</p>
+<p>​</p>
+<p>此时发消息，可以收到回复。</p>
+<p>​</p>
+<p><strong>4. 有分片的模型合并以及导入本地模型</strong></p>
+<p>（如果你是从云商租的服务器，注意，本地导入模型一定要看磁盘空间的容量，保障你的磁盘空间是模型大小的两倍以上，例如模型是72g，你的剩余空间一定要是144g，最好200g，留有一定余量。因为导入模型的时候，它不会自动给那些分片删了。导入完成后，事后你可以缩容。autodl是 只扣一天几毛钱。）</p>
+<p>之前忘了说了，这里补上。</p>
+<p>现在很多较大的模型，大于50g的模型，很多使用分片的方法，这种方式便于网络不好的环境下，下载使用。（毕竟100g的模型，下到50g突然网络中断，那岂不是亏死）</p>
+<p>例如之前我下载的123b模型，在q4下就分成了三个片。​</p>
+<p>我们用ollama直接拉这样的模型，是不被支持的（至少我写这篇文档的时候是这样的）</p>
+<p>拉的时候它会报错，告诉我们，ollama不支持什么的。</p>
+<p>这个时候我们只有点到上图的页面手动下载，Windows上你直接下载就行了。Linux上，你可以复制链接，用wget在服务器下载，也可以直接下载，然后用winscp之类的工具上传上去。这些都是常识，就不细讲了。</p>
+<p>总之，例如上面的模型，下载完之后，你可以看到</p>
+<p>anthracite-core_magnum-v4-123b-Q4_K_M-00001-of-00003.gguf</p>
+<p>anthracite-core_magnum-v4-123b-Q4_K_M-00002-of-00003.gguf</p>
+<p>anthracite-core_magnum-v4-123b-Q4_K_M-00003-of-00003.gguf</p>
+<p>这样的文件，中间有个000x-of-000x的编号。</p>
+<p>下面我们进这里，下载llama的压缩包，里面包含一系列工具，可以评测调整模型什么的，这些感兴趣的可以慢慢了解。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ggerganov/llama.cpp" title="GitHub - ggerganov&#x2F;llama.cpp：C&#x2F;C++ 中的 LLM 推理"><u><span class="15">GitHub - ggerganov&#x2F;llama.cpp<font face="宋体">：</font><font face="Calibri">C&#x2F;C++ </font><font face="宋体">中的 </font><font face="Calibri">LLM </font><font face="宋体">推理</font></span></u></a></p>
+<p>我们把他下载下来并解压，可以看到里面有一系列文件。</p>
+<p>​</p>
+<p>我们把那些带编号的一堆文件丢进这个目录，然后以以下命令参数运行。</p>
+<p>（下面这个例子是我的模型，你要下载你喜欢的模型，就按你喜欢的模型名字填，呃，这个应该不用我解释吧。）</p>
+<p>.&#x2F;llama-gguf-split –merge anthracite-core_magnum-v4-123b-Q4_K_M-00001-of-00003.gguf anthracite-core_magnum-v4-123b-Q4_K_M.gguf</p>
+<p>其中他要求的文件名，你就写第一个文件的文件名就行。第二个文件就是输出出来的文件，为保证可读性，建议只需要把分片的名字去了就行，比如上例那个去了-00001-of-00003。</p>
+<p>导出之后，我们可以看到目录中生成了anthracite-core_magnum-v4-123b-Q4_K_M.gguf文件。</p>
+<p>但那些分片的文件还在，并占用着大量空间，你自己手动删了就行（上图是我删了之后，只剩下anthracite-core_magnum-v4-123b-Q4_K_M.gguf）</p>
+<p>如果是lm studio的话直接按之前讲过的方法导入就行。但ollama好像还没讲如何导入。</p>
+<p>这里就说明一下。</p>
+<p>首先你随便创建个目录，把模型放进去，然后写个文件，名字叫Modelfile，</p>
+<p>然后写下这么一行内容，如果不行的话用绝对路径。</p>
+<p>FROM .&#x2F;模型名字 </p>
+<p>其实这里还可以写一些参数，来对模型进行配置，但这个有机会了，你们可以慢慢研究（或者等我更新填坑。）这里我们先跑通再说。</p>
+<p>然后执行命令</p>
+<p>ollama create &lt;模型名称&gt; -f .&#x2F;Modelfile</p>
+<p>其实就是读取之前写的Modelfile，根据你写的内容进行导入。</p>
+<p>不出意外，如果模型比较大的话，这需要很长时间。</p>
+<p>​</p>
+<p>你可以新开一个终端输入source ~&#x2F;.bashrc，通过磁盘空间的占用，来判断这模型导入到哪一步了。（如果你租的是autodl的话，其他的云商应该也提供相应的命令，去文档里找找吧。</p>
+<p>导入成功后，你输入ollama list即可看见模型，run就行了（如果你是autodl的话，看看爆内存是不是在无卡模式运行）。</p>
+<p>​</p>
+<p><strong>四、详细配置与模型微调</strong></p>
+<p>目前正在用绅士小说训练模型，等我炼完了丹，如果效果好的话，就跟你们讲讲。</p>
+<p>未完待续…（但可能挖坑不填）</p>
+<p><strong>多余的话：</strong></p>
+<p>今天用的时候ollama的官网炸了。所以如果你们从ollama官网那条下载命令出错的话，只好从github上拉下来了。</p>
+<p>我不论是wget还是curl都下下来一堆垃圾，所以就直接下到本地然后上传到服务器。</p>
+<p>tar -zxf ollama.tgz</p>
+<p>不过我没敢用官网的方式放&#x2F;usr里，因为感觉autodl对linux有专门设置，怕出问题，就直接解压到root目录了。</p>
+<p>另外，autodl的那个vGPU-32GB很垃圾别买，用ollama的话，上两个显卡，利用率只有50%，上四个显卡利用率只有25%。卡信息交换瓶颈了。听说vllm能解决这个问题，不过我没试，等日后试了，再更新一下。我现在用的是A40 48g显存，一小时三块，刚好能跑72b 4q量化。</p>
+<p>目前常跑的模型是72B-Qwen2.5-Kunou-v1和L3.3-70B-Euryale-v2.3，另外发现一个14b的中文角色扮演小模型，Tifa-Deepsex-14b-CoT。这个模型的f16量化可以用3090 24g来跑，一小时只要一块钱。</p>
+<p>如果安装ollama，穿透转发之后，显示那个监听端口是127.0.0.1而不是下面图中的方括号，而且访问出403错误的话。把ollama删了，然后直接下载文件，解压到本地执行。.&#x2F;bin&#x2F;ollama serve。就像之前说的那样。这样的话，就使用bash的环境变量了。</p>
+<p>最后，那些整活向的卡很有趣，规则类怪谈也可以玩一玩。</p>
+<p>男女良学校那个卡很有趣！改成TS类型的简直最好玩了，QED，本文完结。（逃</p>
+<p>​</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="http://files.zhouyi.cn.mt/Avatar.png" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="http://files.zhouyi.cn.mt/Avatar.png" title="头像" alt="头像"></a><div class="post-copyright__author_name">Zhouyi</div><div class="post-copyright__author_desc">用文字和代码，把平凡的日子折腾出光✨</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://zhouyi.cn.mt/AI%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6SillyTavern%EF%BC%88%E9%85%92%E9%A6%86%EF%BC%89%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%B8%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://zhouyi.cn.mt/AI%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6SillyTavern%EF%BC%88%E9%85%92%E9%A6%86%EF%BC%89%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%B8%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/')">AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://zhouyi.cn.mt/AI%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6SillyTavern%EF%BC%88%E9%85%92%E9%A6%86%EF%BC%89%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%B8%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建&amp;url=https://zhouyi.cn.mt/AI%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6SillyTavern%EF%BC%88%E9%85%92%E9%A6%86%EF%BC%89%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%B8%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/&amp;pic=https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=b7205b0b-c1a7-89b0-ca70-7ced95312583" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhouyi.cn.mt" target="_blank">Zhouyi's Blog</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"></div></div></div><div class="post_share"><div class="social-share" data-image="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=b7205b0b-c1a7-89b0-ca70-7ced95312583" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/%E5%A6%82%E4%BD%95%E5%B0%86hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0%E4%B8%AA%E4%BA%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=d79b9ec8-3c05-9dba-d326-0c325ce20ffd" onerror="onerror=null;src='https://wp.upx8.com/api.php?content=风景'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">如何将Hexo个人博客部署到个人云服务器上</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="http://files.zhouyi.cn.mt/Avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description">分享前端踩坑日常、折腾笔记，偶尔唠唠数码好物和追剧清单。没有高深理论，只有真实干货和沙雕吐槽，欢迎串门～</div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">Zhouyi</h1><div class="author-info__desc">用文字和代码，把平凡的日子折腾出光✨</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/zhouyistudio" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E5%86%99%E8%BF%9B-bashrc%E9%87%8C%EF%BC%8C%E7%9C%81%E7%9A%84%E6%AF%8F%E6%AC%A1%E6%89%A7%E8%A1%8C%E9%83%BD%E8%A6%81%E9%87%8D%E6%96%B0%E8%BE%93%E5%85%A5%E3%80%82%E5%86%99%E6%9C%80%E5%90%8E%E9%9D%A2%E5%B0%B1%E8%A1%8C%E4%BA%86%E3%80%82"><span class="toc-number">1.</span> <span class="toc-text">可以写进.bashrc里，省的每次执行都要重新输入。写最后面就行了。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E5%AE%9E%E8%BF%99%E4%B8%AA%E8%B7%91%E4%B8%8D%E4%BA%86%EF%BC%8C%E5%9B%A0%E4%B8%BAollama%E4%B8%8D%E6%94%AF%E6%8C%81%E5%88%86%E7%89%87gguf%E6%8B%89%E5%8F%96%E3%80%82%E5%90%8E%E9%9D%A2%E6%88%91%E4%BB%AC%E4%BC%9A%E8%AE%B2%E4%B8%80%E4%B8%8B%E6%80%8E%E4%B9%88%E6%8A%8A%E8%BF%99%E4%BA%9B%E7%89%87%E7%89%87%E5%90%88%E5%B9%B6%E3%80%82"><span class="toc-number">2.</span> <span class="toc-text">其实这个跑不了，因为ollama不支持分片gguf拉取。后面我们会讲一下怎么把这些片片合并。</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/AI%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6SillyTavern%EF%BC%88%E9%85%92%E9%A6%86%EF%BC%89%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%B8%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" title="AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=b7205b0b-c1a7-89b0-ca70-7ced95312583" onerror="this.onerror=null;this.src='https://wp.upx8.com/api.php?content=风景'" alt="AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建"/></a><div class="content"><a class="title" href="/AI%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6SillyTavern%EF%BC%88%E9%85%92%E9%A6%86%EF%BC%89%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%B8%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" title="AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建">AI角色扮演游戏框架SillyTavern（酒馆）的本地与云服务器搭建</a><time datetime="2026-03-02T11:45:25.000Z" title="发表于 2026-03-02 19:45:25">2026-03-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E5%A6%82%E4%BD%95%E5%B0%86hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0%E4%B8%AA%E4%BA%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/" title="如何将Hexo个人博客部署到个人云服务器上"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=d79b9ec8-3c05-9dba-d326-0c325ce20ffd" onerror="this.onerror=null;this.src='https://wp.upx8.com/api.php?content=风景'" alt="如何将Hexo个人博客部署到个人云服务器上"/></a><div class="content"><a class="title" href="/%E5%A6%82%E4%BD%95%E5%B0%86hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0%E4%B8%AA%E4%BA%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/" title="如何将Hexo个人博客部署到个人云服务器上">如何将Hexo个人博客部署到个人云服务器上</a><time datetime="2026-03-02T08:54:43.000Z" title="发表于 2026-03-02 16:54:43">2026-03-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Git%EF%BC%88Windows%E7%89%88%EF%BC%89%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="Git（Windows版）快速安装教程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=d4bbb88f-28e3-787d-e2ac-7887405c6d2b" onerror="this.onerror=null;this.src='https://wp.upx8.com/api.php?content=风景'" alt="Git（Windows版）快速安装教程"/></a><div class="content"><a class="title" href="/Git%EF%BC%88Windows%E7%89%88%EF%BC%89%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="Git（Windows版）快速安装教程">Git（Windows版）快速安装教程</a><time datetime="2026-01-25T08:14:59.000Z" title="发表于 2026-01-25 16:14:59">2026-01-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2b2tCN-Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E5%9C%B0%E5%9D%80/" title="2b2tCN-Minecraft服务器管理地址"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=e3a4fa01-4543-76f0-89e4-f3aa05b642aa" onerror="this.onerror=null;this.src='https://wp.upx8.com/api.php?content=风景'" alt="2b2tCN-Minecraft服务器管理地址"/></a><div class="content"><a class="title" href="/2b2tCN-Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E5%9C%B0%E5%9D%80/" title="2b2tCN-Minecraft服务器管理地址">2b2tCN-Minecraft服务器管理地址</a><time datetime="2026-01-10T03:12:42.000Z" title="发表于 2026-01-10 11:12:42">2026-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Git-Push%E5%A4%B1%E8%B4%A5%EF%BC%9F%E6%95%99%E4%BD%A0%E7%94%A8SSH%E9%93%BE%E6%8E%A5%E8%BD%BB%E6%9D%BE%E8%A7%A3%E5%86%B3/" title="Git Push 失败？教你用 SSH 链接轻松解决"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://wp.upx8.com/api.php?content=%E9%A3%8E%E6%99%AF&amp;_r_=1a633506-19d1-a352-5c45-e18032c4e29b" onerror="this.onerror=null;this.src='https://wp.upx8.com/api.php?content=风景'" alt="Git Push 失败？教你用 SSH 链接轻松解决"/></a><div class="content"><a class="title" href="/Git-Push%E5%A4%B1%E8%B4%A5%EF%BC%9F%E6%95%99%E4%BD%A0%E7%94%A8SSH%E9%93%BE%E6%8E%A5%E8%BD%BB%E6%9D%BE%E8%A7%A3%E5%86%B3/" title="Git Push 失败？教你用 SSH 链接轻松解决">Git Push 失败？教你用 SSH 链接轻松解决</a><time datetime="2025-12-21T03:15:31.000Z" title="发表于 2025-12-21 11:15:31">2025-12-21</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="workboard"><div id="runtimeTextTip"></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://hexo.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.rainyun.com/MTA0Mjc5_" style="margin-inline:5px" data-title="本站由雨云提供计算服务" title="本站由雨云提供计算服务"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://files.zhouyi.cn.mt/%E6%9C%AC%E7%AB%99%E7%94%B1%E9%9B%A8%E4%BA%91%E6%8F%90%E4%BE%9B%E8%AE%A1%E7%AE%97%E6%9C%8D%E5%8A%A1.svg" alt="本站由雨云提供计算服务"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2013 - 2026 By <a class="footer-bar-link" href="/" title="Zhouyi" target="_blank">Zhouyi</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">1</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://hexo.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;https://wp.upx8.com/api.php?content=风景&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>3</sup></a><a href="/tags/Minecraft/" style="font-size: 0.88rem;">Minecraft<sup>1</sup></a><a href="/tags/Web/" style="font-size: 0.88rem;">Web<sup>1</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 0.88rem;">日常<sup>4</sup></a><a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 0.88rem;">服务器<sup>4</sup></a><a href="/tags/%E6%B0%B4%E5%B8%96/" style="font-size: 0.88rem;">水帖<sup>1</sup></a><a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 0.88rem;">踩坑<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("6/4/2013 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2013 By 安知鱼 V1.7.1",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Zhouyi 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("6/4/2013 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "";
+        img.title = "";
+        img.alt = "";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+
+  const initWaline = (Fn) => {
+    const waline = Fn(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://comment.zhouyiblog.cc.cd/# Waline服务器地址',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+      imageUploader: true,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    anzhiyu.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+  }
+
+  const loadWaline = async () => {
+    if (initFn) initWaline(initFn)
+    else {
+      await getCSS('https://cdn.cbd.int/@waline/client@3.8.0/dist/waline.css')
+      if (false) await getCSS('https://cdn.cbd.int/@waline/client@3.8.0/dist/waline-meta.css')
+      const { init } = await import('https://cdn.cbd.int/@waline/client@3.8.0/dist/waline.js')
+      initFn = init || Waline.init
+      initWaline(initFn)
+      window.walineFn = initFn
+    }
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = async () => {
+    try {
+      const res = await fetch('https://comment.zhouyiblog.cc.cd/# Waline服务器地址/api/comment?type=recent&count=6', { method: 'GET' })
+      const result = await res.json()
+      const walineArray = result.data.map(e => {
+        return {
+          'content': changeContent(e.comment),
+          'avatar': e.avatar,
+          'nick': e.nick,
+          'url': e.url + '#' + e.objectId,
+          'date': e.time || e.insertedAt
+        }
+      })
+      saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+      generateHtml(walineArray)
+    } catch (err) {
+      console.error(err)
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+    }
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://cdn.cbd.int/qrcodejs@1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
